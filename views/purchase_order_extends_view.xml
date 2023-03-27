@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--puedes llamar como quieras : <record id="view_purchase_order_extends_form" model="ir.ui.view"> -->
+<odoo>
+    <record id="purchase_order_extends_view_form" model="ir.ui.view">
+        <field name="name">Purchase Order Extends</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='amount_total']" position="attributes">
+                <field name="amount_total" position="attributes">
+                    <attribute name="attrs">{'invisible': 0}</attribute>
+                </field>
+            </xpath>
+            <xpath expr="//field[@name='amount_total']" position="replace">
+                <field name="amount_total" position="attributes">
+                    <attribute name="attrs">{'invisible': 0}</attribute>
+                </field>
+            </xpath>
+            <xpath expr="//notebook//page[@name='purchase_delivery_invoice']" position="after">  <!-- se tiene que buscar en el notebook el @name-->
+                <page string="Relacion factura">
+                    <group>
+                        <field name="coneccion_factura" widget="many2many"
+                               context="{'tree_view_ref':'account.view_move_tree'}"/>
+
+                        <group>
+                        </group>
+                        <group>
+
+                        </group>
+
+                    </group>
+                    <div class="alert alert-info" role="alert" style="margin-bottom: 0px">
+
+                        <p><b>NOTA: El utilizar esta funcion remplazara los datos de productos no seleccionados</b></p>
+
+                        </div>
+                </page>
+
+            </xpath>
+
+
+        </field>
+    </record>
+
+    <record id="view_purchase_order_tree_extends" model="ir.ui.view">
+        <field name="name">view.purchase.order.tree.extends</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_kpis_tree"/>
+        <field name="arch" type="xml">
+
+            <field name="name" readonly="1" position="after">
+                <field name="date_order" optional="show"/>
+
+            </field>
+
+
+        </field>
+    </record>
+
+</odoo>

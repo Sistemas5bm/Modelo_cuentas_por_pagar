@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_presupuesto_lotes" model="ir.ui.view">
+        <field name="name">Vista Presupuesto Lotes</field>
+        <field name="model">presupuesto_lotes</field>
+        <field name="arch" type='xml'>
+
+                <button name="budget_validate" type="object" string="Validar"
+                        class="oe_highlight" invisible="0" states="draft"/>
+                <button name="budget_draft" type="object" string="Cancelar"
+                        class="oe_highlight" invisible="0" states="validate"/>
+                <field name="state" widget="statusbar" statusbar_visible="draft,validate"/>
+
+            <form>
+                <sheet>
+
+                    <center>
+                        <h1 style="color : red">
+                            PRESUPUESTO PAGO DE FRUTA
+
+                        </h1>
+                    </center>
+                    <group>
+                        <group>
+                            <field name="name"/>
+
+                        </group>
+                        <group>
+                            <field name="fecha"/>
+                            <field name="budget_total"/>
+                            <field name="res"/>
+
+
+                        </group>
+
+                    </group>
+
+                    <notebook>
+
+                        <page string="Lotes Provisionados">
+                            <group>
+                                <field name="lotes_provisionados" widget="many2many"/>
+                            </group>
+                        </page>
+
+                        <page string="Facturas adicionales">
+                            <group>
+                                <field name="facturas_adicionales" domain="[('state','=','posted'),('move_type','=','in_invoice')]"
+                                       widget="many2many" />
+                            </group>
+                        </page>
+                        <page string="Pagos masivos">
+                            <group>
+                                <field name="pagos_masivos" widget="section_and_note_one2many"
+                                           mode="tree,kanban" attrs="{'readonly':[('state','=','validado')]}"/>
+                            </group>
+                        </page>
+
+                    </notebook>
+
+                </sheet>
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+
+                <script>
+
+                    console.log('Hi World')
+                </script>
+            </form>
+
+        </field>
+    </record>
+
+</odoo>

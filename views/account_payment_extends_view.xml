@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_account_payment_extends_form" model="ir.ui.view">
+
+        <field name="name">view.account.payment.extends.form</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='move_id']" position="after">
+
+                <field name="complemento_de_pago_file" filename="complemento_de_pago_filename"
+                       optional="show"/>
+                <field name="complemento_de_pago_filename" invisible="1"/>
+                <field name="comprobante_pago_file" filename="comprobante_pago_filename"
+                       optional="show"/>
+                <field name="comprobante_pago_filename" invisible="1"/>
+
+                <field name="reconciled_bill_ids" widget="many2many"/>
+                <field name="recn"/>
+
+            </xpath>
+        </field>
+
+    </record>
+
+
+    <!-- se extiende la vista tree del modulo-->
+    <record id="view_account_payment_tree_attachments" model="ir.ui.view">
+        <field name="name">view.account.payment.tree.attachments</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_supplier_payment_tree"/>
+        <field name="arch" type="xml">
+
+            <field name="state" readonly="1" position="after">
+
+                <field name="complemento_de_pago_file" filename="complemento_de_pago_filename" widget="binary"
+                       readonly="1" optional="show"/>
+                <field name="complemento_de_pago_filename" invisible="1"/>
+
+                <field name="comprobante_pago_file" filename="comprobante_pago_filename" widget="binary" readonly="1"
+                       optional="show"/>
+                <field name="comprobante_pago_filename" invisible="1"/>
+                <field name="partner_bank_id" optional="show"/>
+                <field name="bank_id_name_code" optional="show"/>
+
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_payment_tree_attachments_2" model="ir.ui.view">
+        <field name="name">view.account.payment.tree.attachments2</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_tree"/>
+        <field name="arch" type="xml">
+
+            <field name="state" readonly="1" position="after">
+
+                <field name="complemento_de_pago_file" filename="complemento_de_pago_filename" widget="binary"
+                       readonly="1" optional="show"/>
+                <field name="complemento_de_pago_filename" invisible="1"/>
+
+                <field name="comprobante_pago_file" filename="comprobante_pago_filename" widget="binary" readonly="1"
+                       optional="show"/>
+                <field name="comprobante_pago_filename" invisible="1"/>
+                <field name="partner_bank_id" optional="show"/>
+                <field name="bank_id_name" optional="show"/>
+                <field name="bank_id_name_code" optional="show"/>
+
+            </field>
+        </field>
+    </record>
+
+</odoo>
+
+

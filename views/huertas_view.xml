@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_huertas" model="ir.ui.view">
+        <field name="name">Vista Huertas</field>
+        <field name="model">huertas</field>
+        <field name="arch" type='xml'>
+
+            <form>
+                <sheet>
+                    <center>
+                        <h1 style="color : black">
+                            HUERTAS
+
+                        </h1>
+                    </center>
+                    <widget name="web_ribbon" title="Archivado" bg_color="bg-danger"
+                            attrs="{'invisible': [('active','=',True)]}"/>
+                    <group>
+                        <group>
+                            <div class="oe_title">
+                                <div class="o_row">
+
+                                    <h1>
+
+                                        <field name="name"
+                                               placeholder="Nombre de la huerta"
+                                               required="1"
+                                               default_focus="1"/>
+
+
+                                    </h1>
+
+                                </div>
+
+                            </div>
+                            <field name="sader"/>
+                            <field name="productor" domain="[('category_id','in',[categoria_productor_id])]"/>
+                            <field name="producto"/>
+                            <field name="image_1920" widget="image" class="oe_avatar"
+                                   options="{'preview_image': 'image_128','size':[128,128]}"/>
+
+
+                        </group>
+                        <group>
+                            <field name="active" widget="boolean_toggle"/>
+                            <field name="ubicacion"/>
+                            <field name="estado"/>
+                            <field name="ciudad"/>
+                            <field name="localidad"/>
+                            <field name="categoria_productor_id" invisible="1"/>
+
+                        </group>
+
+
+                    </group>
+
+                    <group string="Datos génerales" style="margin-top: -20px;">
+                        <group>
+
+                            <field name="observaciones" placeholder="Observaciones"/>
+
+                        </group>
+                    </group>
+
+                    <notebook>
+
+                        <page string="Certificaciones">
+                            <group>
+
+                                <group>
+                                <field name="registros_certificaciones"/>
+                                </group>
+                                <group>
+
+                                </group>
+
+                            </group>
+                        </page>
+
+                        <page string="Datos tecnicos">
+                            <group>
+                                <group>
+                                    <field name="fda"/>
+                                    <field name="fecha_creacion" readonly="1"/>
+                                </group>
+                                <group>
+
+                                </group>
+                            </group>
+
+                        </page>
+
+                          <page string="Adjuntos">
+                            <group>
+
+                                <group>
+                                <field name="es_tarjeta_apeam" widget="boolean_toggle"/>
+                                <field name="tarjeta_apeam" filename="tarjeta_apeam_filename" attrs="{'invisible': [('es_tarjeta_apeam' , '=' ,False)]}"/>
+                                <field name="tarjeta_apeam_filename" invisible="1"/>
+                                </group>
+                                 <group>
+                                <field name="es_contrato_terceros" widget="boolean_toggle"/>
+                                <field name="contrato_terceros_lista"
+                                       attrs="{'invisible': [('es_contrato_terceros' , '=' ,False)]}"/>
+                                </group>
+                            </group>
+                        </page>
+
+                    </notebook>
+
+                </sheet>
+                <script>
+
+                    console.log('Hi World')
+                </script>
+            </form>
+
+        </field>
+    </record>
+
+
+
+     <record id="huertas_tree" model="ir.ui.view">
+
+        <field name="name">Tree Huertas View</field>
+        <field name="model">huertas</field>
+        <field name="arch" type="xml">
+
+
+
+                    <tree string="Huertas View" limit="1000">
+                        <field name="name"/>
+                        <field name="sader" optional="1"/>
+                        <field name="productor"/>
+                        <field name="es_contrato_terceros" widget="boolean_toggle"/>
+                        <field name="contrato_terceros_lista"/>
+                        <field name="es_tarjeta_apeam" widget="boolean_toggle"/>
+                    </tree>
+
+
+
+        </field>
+
+    </record>
+
+     <record id="view_lotes_search_huertas" model="ir.ui.view">
+        <field name="name">lotes.search.huertas</field>
+        <field name="model">huertas</field>
+        <field name="arch" type="xml">
+
+            <search string="Busqueda huertas">
+                <field name="name" string="Cadenas Texto"
+                       filter_domain="['|','|',('name', 'ilike', self),('sader', 'ilike', self),('productor', 'ilike', self)]"/>
+            </search>
+
+        </field>
+    </record>
+
+
+</odoo>

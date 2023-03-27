@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_ciudad" model="ir.ui.view">
+        <field name="name">Vista Ciudad</field>
+        <field name="model">ciudad</field>
+        <field name="arch" type='xml'>
+
+                      <form>
+                <sheet>
+                   <!-- <center>
+                        <h1 style="color : red">
+                            TITULO!!!
+
+                        </h1>
+                    </center> -->
+<widget name="web_ribbon" title="Archivado" bg_color="bg-danger" attrs="{'invisible': [('active','=',True)]}"/>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="estado"/>
+
+                        </group>
+                        <group>
+
+                            <field name="active" widget="boolean_toggle"/>
+
+                        </group>
+                    </group>
+                </sheet>
+                <script>
+
+                    console.log('Hi World')
+                </script>
+            </form>
+
+        </field>
+    </record>
+
+</odoo>

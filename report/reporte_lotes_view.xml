@@ -1,0 +1,47 @@
+<odoo>
+
+    <report id="action_lotes_view_sql_report"
+            string="Lotes View SQL Report"
+            model="lotes_viewv"
+            report_type="qweb-html"
+            name="cuentas_por_pagar.report_lotes_view_sql"
+    />
+
+    <template id="report_lotes_view_sql">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                     <div style="margin-bottom:20px;">De: <span style="margin-right:50px;" t-esc="date_start"/> A: <span style="margin-right:10px;" t-esc="date_end"/></div>
+                    <!-- Report page content -->
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Lote</th>
+                            <th>Importe</th>
+                        </tr>
+                        <t t-set="total" t-value="0.0"/>
+                        <t t-foreach="docs" t-as="o">
+                            <t t-set="total" t-value="o.importe"/>
+                            <tr>
+                                <td class="col-xs-6">
+                                    <span t-field="o.id_partner"/>
+                                </td>
+                                <td class="col-xs-3">
+                                    <t t-esc="'${0:,.2f}'.format(float(o.importe))"/>
+
+                                </td>
+
+
+                            </tr>
+                            <tr class="text_right">
+                                <td class="text_right">TOTAL=<t t-esc="'${0:,.2f}'.format(float(total))"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
+
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

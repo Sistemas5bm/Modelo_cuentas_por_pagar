@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_lotesx" model="ir.ui.view">
+        <field name="name">Lotes</field>
+        <field name="model">lotes</field>
+        <field name="arch" type='xml'>
+
+            <form>
+
+                <header>
+                    <button string="Contabilizar Lote" type="object" name="contabilizar_lote" class="oe_highlight"
+                            states="borrador"/>
+                    <button string="Contabilizar Cfdi" type="object" name="contabilizar_cfdi" class="oe_highlight"
+                            states="borrador"/>
+                    <button string="Cambiar a borrador" type="object" name="convertir_a_borrador"
+                            states="Contabilizado Lote,Contabilizado Cfdi"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="borrador,Contabilizado Lote,Contabilizado Cfdi"/>
+                    <button string="Reporte Seleccion" type="object" name="download_corrida_lote" class="oe_highlight"/>
+
+                </header>
+
+                <sheet>
+                    <center>
+                        <h1 style="color : black">
+                            LOTES
+
+                        </h1>
+                    </center>
+                    <widget name="web_ribbon" title="Archivado" bg_color="bg-danger"
+                            attrs="{'invisible': [('active','=',True)]}"/>
+
+                    <group>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="id_credito_mov" readonly="1"/>
+                            <field name="id_partner" readonly="1"/>
+                            <field name="jefe_acopio" readonly="1"/>
+                            <field name="sader" readonly="1"/>
+                            <field name="sader_code" readonly="1"/>
+                            <field name="clave" readonly="1"/>
+                            <field name="fecha" readonly="1"/>
+                            <field name="tipo_movimiento" readonly="1"/>
+                            <field name="precio_u" readonly="1"/>
+                            <field name="importe" readonly="1"/>
+                            <field name="cantidad" readonly="1"/>
+                            <field name="active" widget="boolean_toggle"/>
+                            <field name="abono" readonly="1"/>
+                            <!--<button string="Calcular" type="object" name="get_importe_factura" class="oe_stat_button"
+                                    icon="fa-bolt"/>-->
+                            <!--    <button string="Popup" type="action" name="%(action_open_lotes_descarga_wizard)d"/> -->
+                        </group>
+                        <group>
+                            <field name="poblacion" readonly="1"/>
+                            <field name="jefe_acopio" readonly="1"/>
+                            <field name="cajas" readonly="1"/>
+                            <field name="fecha_empacado" readonly="1"/>
+                            <field name="tickets" readonly="1"/>
+                            <field name="referencia" readonly="1"/>
+                            <field name="observaciones" readonly="1"/>
+                            <field name="abono" readonly="1"/>
+                            <field name="saldo_pendiente" readonly="1"/>
+                            <field name="adicionales"/>
+                            <field name="status_facturas"/>
+                            <field name="id_productor"/>
+
+                        </group>
+                    </group>
+
+                    <notebook>
+
+                        <page string="Adjuntos">
+                            <group>
+
+                                <group>
+                                    <field name="es_doc_bico" widget="boolean_toggle"/>
+                                    <field name="doc_bico"
+                                           attrs="{'invisible': [('es_doc_bico' , '=' ,False)]}"/>
+                                </group>
+
+
+                            </group>
+                        </page>
+
+                        <page string="Cdfis">
+                            <group>
+
+                                <group>
+
+                                </group>
+
+
+                            </group>
+                        </page>
+
+                        <page string="Movimientos Del Lote">
+                            <group>
+
+                                <group>
+                                <field name="lotes_detalle"/>
+                                </group>
+
+
+                            </group>
+                        </page>
+                        <page string="Reporte de selección">
+                            <group>
+
+                                <group>
+                                    <field name="reporte_seleccion"/>
+                                    <field name="user_descarga" invisible="1"/>
+                                    <field name="fecha_descarga_seleccion_string"/>
+                                </group>
+
+
+
+                            </group>
+                        </page>
+
+
+
+                    </notebook>
+
+                </sheet>
+
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+
+                <script>
+
+                    console.log('Hi World')
+                </script>
+            </form>
+
+        </field>
+    </record>
+    <!--  Vista tree    -->
+    <record id="view_lotesp_tree" model="ir.ui.view">
+
+        <field name="name">Lotes View</field>
+        <field name="model">lotes</field>
+        <field name="arch" type="xml">
+
+            <tree string="Lotes Tree" multi_edit="1" limit="80">
+                <header>
+                    <button name="contabilizar_lote" type="object" string="Contabilizar Lote"
+                            class="oe_highlight" invisible="0"/>
+                    <button name="contabilizar_cfdi" type="object" string="Contabilizar Cfdi"
+                            class="oe_highlight" invisible="0"/>
+                    <button name="convertir_a_borrador" type="object" string="Borrador"
+                            class="oe_highlight" invisible="0"/>
+
+                </header>
+
+
+                <field name="name" readonly="1"/>
+                <field name="fecha" readonly="1" optional="show"/>
+                <field name="id_partner" readonly="1" optional="show"/>
+                <field name="jefe_acopio" readonly="1"/>
+                <field name="abono" readonly="1" optional="show"/>
+                <field name="sader" readonly="1" optional="show"/>
+                <field name="sader_code" readonly="1" optional="show"/>
+                <field name="tipo_movimiento" readonly="1" optional="show"/>
+                <field name="cantidad" readonly="1" optional="show" sum="Kilogramos"/>
+                <field name="kilogramos_abonados_v" optional="show"/>
+                <field name="kilogramos_pendientes_v"/>
+                <field name="precio_u" readonly="1" optional="show"/>
+                <field name="importe" readonly="1" optional="show" sum="Importe"/>
+                <field name="observaciones" readonly="1" optional="show"/>
+                <field name="active" widget="boolean_toggle" optional="hide"/>
+                <field name="status_pago" optional="show"/>
+                <field name="status_provision" optional="show" widget="badge"
+                       decoration-success="status_provision == 'Provisionado Totalmente'"
+                       decoration-danger="status_provision == 'Provisionado Parcialmente'"
+                       decoration-info="status_provision == 'No Provisionado'"/>
+                <field name="state" statusbar_visible="borrador,Contabilizado Lote,Contabilizado Cfdi" optional="Show"
+                       decoration-warning="state == 'Contabilizado Lote'"
+                       decoration-success="state == 'Contabilizado Cfdi'" decoration-muted="state == 'Borrador'"
+                       widget="badge"/>
+                <field name="lotes_detalle" optional="show" widget="many2many_tags"/>
+                <field name="no_movimientos" widget="badge"/>
+                <field name="estado_pago" widget="badge"
+                decoration-success="estado_pago == 'paid'" decoration-muted="estado_pago == 'not_paid'"/>
+                <field name="estado_factura" widget="badge"/>
+                <field name="uuid_search" optional="hide"/>
+                <field name="serie_search" optional="hide"/>
+                <field name="folio_search" optional="hide"/>
+                <field name="emisor_search" optional="hide"/>
+                <field name="fecha_factura_search" optional="hide"/>
+                <field name="total_lote_saldos_mod" optional="hide"/>
+                <!--<field name="estatus_pago_res" optional="show" />-->
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_lotes_search" model="ir.ui.view">
+        <field name="name">lotes.search</field>
+        <field name="model">lotes</field>
+        <field name="arch" type="xml">
+
+            <search string="Busqueda lotes">
+                <field name="name" string="Cadenas Numericas"
+                       filter_domain="['|','|',('name', 'ilike', self),('cantidad','ilike',self),('importe','ilike',self)]"/>
+                <field name="id_partner" string="Cadenas de Texto Search"
+                       filter_domain="['|',('id_partner', 'ilike', self),('sader','ilike',self)]"/>
+
+                 <separator/>
+                    <filter string="Pagado" name="estado_pago" domain="[('lotes_detalle.estado_factura', '=', 'paid')]" help="Lotes pagados"/>
+                    <filter string="No Pagado" name="estado_pago" domain="['|',('lotes_detalle.estado_factura', '=', 'not_paid'),('lotes_detalle','=',False)]" help="Lotes pagados"/>
+                    <filter string="No Cancelados" name="estado_factura" domain="[('lotes_detalle.estado_pago', '!=', 'cancel')]"
+                            help="Lotes que no estan cancelados"/>
+                    <filter string="Cancelado" name="estado_factura" domain="[('lotes_detalle.estado_pago', '=', 'cancel')]"
+                            help="Lotes que no estan cancelados"/>
+
+                    <separator/>
+            </search>
+
+        </field>
+    </record>
+
+</odoo>
+

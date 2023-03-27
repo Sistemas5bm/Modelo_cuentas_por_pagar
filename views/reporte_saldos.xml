@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!--reporte qweb-->
+
+
+          <report
+            id ="report_estado_cuenta_card"
+            string="No Facturado"
+            model="reporte_saldos"
+            report_type="qweb-pdf"
+            name="cuentas_por_pagar.lotes_report_new"
+            file="cuentas_por_pagar.lotes_report_new"
+        />
+              <report
+            id ="report_lotes_facturado_no_pagado"
+            string="Facturado No Pagado"
+            model="reporte_saldos"
+            report_type="qweb-pdf"
+            name="cuentas_por_pagar.lotes_report_new_facturado_no_pagado"
+            file="cuentas_por_pagar.lotes_report_new_facturado_no_pagado"
+        />
+
+              <report
+            id ="report_lotes_fac_no_pag_no_fac_no_pag"
+            string="Fac No Pagado - No Fac No Pagado"
+            model="reporte_saldos"
+            report_type="qweb-pdf"
+            name="cuentas_por_pagar.fac_no_pag_no_fac_no_pag"
+            file="cuentas_por_pagar.fac_no_pag_no_fac_no_pag"
+        />
+
+                  <report
+            id ="report_lotes_fac_no_pag_detail"
+            string="Facturado No Pagado Detalle"
+            model="reporte_saldos"
+            report_type="qweb-pdf"
+            name="cuentas_por_pagar.lotes_report_fac_no_pag_detall"
+            file="cuentas_por_pagar.lotes_report_fac_no_pag_detall"
+        />
+
+                      <report
+            id ="report_lotes_no_fac_detall"
+            string="No Facturado Detalle"
+            model="reporte_saldos"
+            report_type="qweb-pdf"
+            name="cuentas_por_pagar.lotes_report_no_fac_datall"
+            file="cuentas_por_pagar.lotes_report_no_fac_datall"
+        />
+
+        <report
+            id ="report_lotes_pagado"
+            string="Pagado"
+            model="reporte_saldos"
+            report_type="qweb-pdf"
+            name="cuentas_por_pagar.lotes_report_pagado"
+            file="cuentas_por_pagar.lotes_report_pagado"
+        />
+        <report
+            id ="report_lotes_pagado_prod"
+            string="Pagado X (Productor)"
+            model="reporte_saldos"
+            report_type="qweb-pdf"
+            name="cuentas_por_pagar.lotes_report_pagado_prod"
+            file="cuentas_por_pagar.lotes_report_pagado_prod"
+        />
+            <report
+            id ="report_lotes_pagado_prod_det"
+            string="Pagado X (Productor) Detallado"
+            model="reporte_saldos"
+            report_type="qweb-pdf"
+            name="cuentas_por_pagar.lotes_report_pagado_prod_det"
+            file="cuentas_por_pagar.lotes_report_pagado_prod_det"
+        />
+                <report
+            id ="report_lotes_pagado_emi_det"
+            string="Pagado X (Emisor) Detallado"
+            model="reporte_saldos"
+            report_type="qweb-pdf"
+            name="cuentas_por_pagar.lotes_report_pagado_emi_det"
+            file="cuentas_por_pagar.lotes_report_pagado_emi_det"
+        />
+
+              <report
+            id ="report_estado_cuenta_card_xls"
+            string="No Facturado XLSX"
+            model="reporte_saldos"
+            report_type="xlsx"
+            name="cuentas_por_pagar.lotes_report_new_xls"
+            file="cuentas_por_pagar.lotes_report_new_xls"
+        />
+                  <report
+            id ="report_lotes_facturado_no_pagado_xls"
+            string="Facturado No Pagado XLSX"
+            model="reporte_saldos"
+            report_type="xlsx"
+            name="cuentas_por_pagar.lotes_report_facturado_no_pagado_xls"
+            file="cuentas_por_pagar.lotes_report_facturado_no_pagado_xls"
+        />
+                  <report
+            id ="report_lotes_fac_no_pag_no_fac_no_pag_xls"
+            string="Saldos de proveedor XLS"
+            model="reporte_saldos"
+            report_type="xlsx"
+            name="cuentas_por_pagar.fac_no_pag_no_fac_no_pag_xls"
+            file="cuentas_por_pagar.fac_no_pag_no_fac_no_pag_xls"
+        />
+                      <report
+            id ="report_lotes_fac_no_pag_detail_xls"
+            string="Facturado No Pagado Detalle XLS"
+            model="reporte_saldos"
+            report_type="xlsx"
+            name="cuentas_por_pagar.lotes_report_fac_no_pag_detall_xls"
+            file="cuentas_por_pagar.lotes_report_fac_no_pag_detall_xls"
+        />
+                          <report
+            id ="report_lotes_no_fac_detall_xls"
+            string="No Facturado Detalle XLS"
+            model="reporte_saldos"
+            report_type="xlsx"
+            name="cuentas_por_pagar.lotes_report_no_fac_datall_xls"
+            file="cuentas_por_pagar.lotes_report_no_fac_datall_xls"
+        />
+            <report
+            id ="report_lotes_pagado_xls"
+            string="Pagado por Emisor XLS"
+            model="reporte_saldos"
+            report_type="xlsx"
+            name="cuentas_por_pagar.lotes_report_pagado_xls"
+            file="cuentas_por_pagar.lotes_report_pagado_xls"
+        />
+            <report
+            id ="report_lotes_pagado_prod_xls"
+            string="Pagado X (Productor) XLS"
+            model="reporte_saldos"
+            report_type="xlsx"
+            name="cuentas_por_pagar.lotes_report_pagado_prod_xls"
+            file="cuentas_por_pagar.lotes_report_pagado_prod_xls"
+        />
+            <report
+            id ="report_lotes_pagado_prod_det_xls"
+            string="Pagado X (Productor) Detallado XLS"
+            model="reporte_saldos"
+            report_type="xlsx"
+            name="cuentas_por_pagar.lotes_report_pagado_prod_det_xls"
+            file="cuentas_por_pagar.lotes_report_pagado_prod_det_xls"
+        />
+                <report
+            id ="report_lotes_pagado_emi_det_xls"
+            string="Pagado X (Emisor) Detallado XLS"
+            model="reporte_saldos"
+            report_type="xlsx"
+            name="cuentas_por_pagar.lotes_report_pagado_emi_det_xls"
+            file="cuentas_por_pagar.lotes_report_pagado_emi_det_xls"
+        />
+
+       <report
+            id ="report_pres_fac_xls"
+            string="Presupuesto por factura XLS"
+            model="reporte_saldos"
+            report_type="xlsx"
+            name="cuentas_por_pagar.pres_fac_xls"
+            file="cuentas_por_pagar.pres_fac_xls"
+        />
+           <report
+            id ="report_pres_fac"
+            string="Presupuesto por factura PDF"
+            model="reporte_saldos"
+            report_type="qweb-pdf"
+            name="cuentas_por_pagar.presupuesto_por_factura"
+            file="cuentas_por_pagar.presupuesto_por_factura"
+        />
+               <report
+            id ="report_lotes_fleteros"
+            string="Reporte fleteros PDF"
+            model="reporte_saldos"
+            report_type="qweb-pdf"
+            name="cuentas_por_pagar.lotes_fleteros"
+            file="cuentas_por_pagar.lotes_fleteros"
+        />
+    <report
+            id ="report_lotes_fleteros2"
+            string="Reporte fleteros PDF2"
+            model="reporte_saldos"
+            report_type="qweb-pdf"
+            name="cuentas_por_pagar.lotes_fleteros2"
+            file="cuentas_por_pagar.lotes_fleteros2"
+    />
+
+    <report
+            id ="report_lotes_fleteros3"
+            string="Reporte Facturas Fletes PDF"
+            model="reporte_saldos"
+            report_type="qweb-pdf"
+            name="cuentas_por_pagar.lotes_fleteros3"
+            file="cuentas_por_pagar.lotes_fleteros3"
+    />
+    <report
+           id ="report_presupuesto_fletes"
+           string="Report presupuesto fletes PDF"
+           model="reporte_saldos"
+           name="cuentas_por_pagar.presupuesto_fletes"
+           file="cuentas_por_pagar.presupuesto_fletes"
+    />
+
+    <record id="view_reporte_saldos" model="ir.ui.view">
+        <field name="name">Vista Reporte Saldos</field>
+        <field name="model">reporte_saldos</field>
+        <field name="arch" type='xml'>
+
+            <form>
+                <header>
+                    <button name="testing_calculate_not_paid" string="Calcular Saldo Pendiente De Pago" type="object"
+                            class="oe_highlight"/>
+                       <button name="prueba_query" string="Imprimir Reporte" type="object"
+                            class="oe_highlight"/>
+                    <button name="prueba_query" string="Imprimir Reporte" type="object"
+                            class="oe_highlight"/>
+
+                </header>
+
+            </form>
+
+        </field>
+    </record>
+
+
+
+</odoo>

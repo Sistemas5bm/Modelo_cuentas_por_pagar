@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+
+    <record id="view_account_move_form" model="ir.ui.view">
+
+        <field name="name">view.account.move.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_bank_id']" position="after">
+
+                <field name="uuid"/>
+
+            </xpath>
+        </field>
+
+    </record>
+    <record id="view_account_move_form_lotes" model="ir.ui.view">
+        <field name="name">view.account.move.form.lotes</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+
+
+            <xpath expr="//notebook//page[@name='other_info']" position="before">
+                <page string="Relacion de lotes">
+                   <!--<field name="lotes_relacion"/>-->
+                    <field name="lotes_cfdi_relacionn" widget="section_and_note_one2many"
+                                       mode="tree,kanban"/>
+
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="view_account_move_form_cfdi" model="ir.ui.view">
+        <field name="name">view.account.move.form.cfdi</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Se coloca el uuid despues de el @name=id -->
+            <xpath expr="//notebook//page[@name='other_info']" position="before">
+                <page string="CFDI 3.3">
+                    <group>
+                        <group>
+                        <group>
+                            <group>
+                                <field name="uuid"/>
+                                <field name="guid_document"/>
+                                <field name="rfc_emisor"/>
+                                <field name="nombre_emisor"/>
+                                <field name="regimen_emisor"/>
+                                <field name="regimen_emisor_desc"/>
+                                <field name="curp_emisor"/>
+
+
+                            </group>
+
+                            <group>
+
+                                <field name="rfc_receptor"/>
+                                <field name="nombre_receptor"/>
+                                <field name="total_impuestos_retenidos"/>
+                                <field name="total_impuestos_traslado"/>
+                                <field name="version"/>
+                                <field name="serie"/>
+                                <field name="folio"/>
+                                <field name="fecha"/>
+
+                            </group>
+                        </group>
+                            </group>
+                        <group>
+                        <group>
+                            <group>
+
+                               <field name="fecha_mes"/>
+                                <field name="fecha_anio"/>
+                                <field name="forma_de_pago"/>
+                                <field name="forma_de_pago_desc"/>
+                                <field name="condiciones_de_pago"/>
+                                <field name="subtotal"/>
+                                <field name="descuento"/>
+                                <field name="tipo_cambio"/>
+                            </group>
+
+                            <group>
+
+                               <field name="moneda"/>
+                               <field name="moneda_desc"/>
+                               <field name="total"/>
+                                <field name="tipo_comprobante"/>
+                                <field name="metodo_pago"/>
+                                <field name="metodo_pago_desc"/>
+                                <field name="lugar_exp"/>
+                                <field name="lugar_exp_desc"/>
+                                <field name="fecha_timbrado"/>
+                                <field name="fecha_timbrado_mes"/>
+                                <field name="fecha_timbrado_anio"/>
+                                <field name="numero_certificado"/>
+                                <field name="uso_cfdi"/>
+                                <field name="uso_cfdi_desc"/>
+                            </group>
+
+                        </group>
+                            </group>
+                        <group>
+                            <group>
+                                <field name="confirmacion"/>
+                                <field name="tipo_documento"/>
+                                <field name="residencia_fiscal"/>
+                                <field name="residencia_fiscal_desc"/>
+                                <field name="num_registro_id_trib"/>
+
+                                <field name="tipo_comprobante_desc"/>
+                                <field name="num_cuenta"/>
+                            </group>
+                        </group>
+                    </group>
+
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+        <!-- se extiende la vista tree del modulo-->
+        <record id="view_account_move_tree_cfdi" model="ir.ui.view">
+        <field name="name">view.account.move.tree.cfdi</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_in_invoice_tree"/>
+        <field name="arch" type="xml">
+
+                    <field name="name" readonly="1" position="before">
+                        <field name="uuid" optional="show"/>
+                        <field name="serie" optional="show"/>
+                        <field name="folio" optional="show"/>
+                    </field>
+                    <field name="invoice_date" readonly="1" position="before">
+                        <field name="metodo_pago" optional="show"/>
+
+                    </field>
+                    <field name="payment_state" readonly="1" position="after">
+
+                        <field name="lotes_cfdi_relacionn" widget="many2many_tags"/>
+
+                    </field>
+           </field>
+        </record>
+
+
+</odoo>

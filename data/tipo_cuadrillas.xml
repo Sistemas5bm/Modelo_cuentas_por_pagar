@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="1">
+    <record id="tipo_cuadrilla_extra" model="tipo_cuadrillas">
+
+        <field name="name">CUADRILLA EXTRA</field>
+
+    </record>
+      <record id="tipo_cuadrilla_normal" model="tipo_cuadrillas">
+
+        <field name="name">CUADRILLA NORMAL</field>
+
+    </record>
+
+      <record id="tipo_cuadrilla_ajuste" model="tipo_cuadrillas">
+
+        <field name="name">AJUSTE</field>
+
+    </record>
+
+              <record id="tipo_cuadrilla_salida_falso" model="tipo_cuadrillas">
+
+        <field name="name">SALIDA EN FALSO</field>
+
+    </record>
+    </data>
+
+</odoo>

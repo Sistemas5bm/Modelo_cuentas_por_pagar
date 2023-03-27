@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <record id="view_res_partner_bank_form" model="ir.ui.view">
+        <field name="name">view.res.partner.bank.form</field>
+        <field name="model">res.partner.bank</field>
+        <field name="inherit_id" ref="account.view_company_partner_bank_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//form//sheet" position="before">
+
+                    <div class="alert alert-info" role="alert" style="margin-bottom: 0px"
+                     >
+                    <field name="alerta_check_def"  />
+
+                    </div>
+
+            </xpath>
+
+            <!-- Se coloca el uuid despues de el @name=id -->
+            <xpath expr="//field[@name='acc_type']" position="after">
+                <field name="es_caratura_estado_cuenta" widget="boolean_toggle"/>
+                <field name="caratula_estado_cuenta" filename="caratula_estado_cuenta_filename" attrs="{'invisible': [('es_caratura_estado_cuenta' , '=' ,False)]}"/>
+                <field name="caratula_estado_cuenta_filename" invisible="1"/>
+                <field name="check" widget="toggle"/>
+                <field name="resultado" invisible="1"/>
+
+            </xpath>
+
+        </field>
+    </record>
+    <record id="view_res_partner_bank_tree_extends" model="ir.ui.view">
+<field name="name">view.res.partner.bank</field>
+<field name="model">res.partner.bank</field>
+<field name="inherit_id" ref="base.view_partner_bank_tree"/>
+<field name="arch" type="xml">
+<field name="partner_id" readonly="1" position="after">
+<field name="rfc"/>
+</field>
+</field>
+</record>
+    <record id="view_res_partner_bank_treez" model="ir.ui.view">
+        <field name="name">view.res.partner.bank.form</field>
+        <field name="model">res.partner.bank</field>
+        <field name="inherit_id" ref="base.view_partner_bank_tree"/>
+        <field name="arch" type="xml">
+                <xpath expr="//field[@name='acc_number']" position="after">
+                <field name="check"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

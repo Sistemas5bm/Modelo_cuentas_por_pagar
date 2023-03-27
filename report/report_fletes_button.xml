@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="action_report_fletes_view" model="ir.actions.report">
+        <field name="name">Reporte-fletes</field>
+        <field name="model">fletes_modelo_tts</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cuentas_por_pagar.report_fletes</field>
+        <field name="report_file">cuentas_por_pagar.report_fletes</field>
+        <field name="print_report_name">('Fletes-%s' %(object.beneficiario))</field>
+        <field name="binding_model_id" ref="model_fletes_modelo_tts"/>
+        <field name="binding_type">report</field>
+    </record>
+    <template id="report_fletes">
+         <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="web.external_layout">
+                <div class="row">
+                        <table class="table table_condensed">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:left;"><strong>BENEFICIARIO.: </strong></th>
+                                    <th style="text-align:left;"><strong>ID_FLETE: </strong></th>
+                                    <th style="text-align:left;"><strong>FECHA: </strong></th>
+                                    <th style="text-align:left;"><strong>HUERTA: </strong></th>
+                                    <th style="text-align:left;"><strong>MUNICIPIO: </strong></th>
+                                    <th style="text-align:left;"><strong>CAJAS CAMION: </strong></th>
+                                    <th style="text-align:left;"><strong>NOMBRE TRANSPORTISTA: </strong></th>
+                                    <th style="text-align:left;"><strong>TOTAL: </strong></th>
+
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                     <tr>
+                                   <th t-field="o.beneficiario_pdf"/>
+                                   <th t-field="o.name"/>
+                                   <th t-field="o.fecha"/>
+                                   <th t-field="o.huerta"/>
+                                   <th t-field="o.municipio"/>
+                                   <th t-field="o.cajas_mixtos_fletes"/>
+                                   <th t-field="o.nombre_transportista"/>
+                                   <th t-field="o.importe_mas_retencion"/>
+                                    </tr>
+                            </tbody>
+                        </table>
+                    </div>
+            </t>
+        </t>
+    </t>
+
+    </template>
+</odoo>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_pagos_layout" model="ir.ui.view">
+        <field name="name">Pagos Layout x View</field>
+        <field name="model">pagos_layout</field>
+        <field name="arch" type="xml">
+
+            <form>
+                <header>
+                    <button name="confirmLayout" string="Confirmar Layout" type="object" class="oe_highlight"
+                            states="borrador"/>
+                    <button name="export_txt_layout_santander" string="TXT Santander" type="object"/>
+                    <button name="export_txt_layout_other_banks" string="TXT Otros Bancos" type="object"/>
+                    <button name="total_calculate" string="Imprimir PDF" type="object" class="oe_highlight"/>
+                    <button string="Cancelar" type="object" name="cancelar_layout" states="validado"/>
+                    <button string="Pagar Facturas" type="object" name="action_register_payment" confirm="Se generaran los pagos correspondientes a facturas
+                     ¿deseas continuar?"/>
+                    <button string="Cargar pagos de LAYOUT" type="object" name="pruebas" confirm="Se generaran los pagos correspondientes a facturas
+                     ¿deseas continuar?"/>
+                    <field name="state" widget="statusbar" statusbar_visible="borrador,validado"/>
+                    <button string="Pago Masivo" type="object" name="action_register_payment" confirm="Se generaran los pagos correspondientes a facturas Masivamente
+                     ¿deseas continuar?"/>
+                </header>
+
+                <sheet>
+                    <center>
+                        <h1 style="color : red">
+                            LAYOUT PAGO
+
+                        </h1>
+                    </center>
+
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="layout_name" invisible="1"/>
+                            <field name="txt_layout_file" filename="layout_name"/>
+                            <field name="fecha_mod_layout" readonly="True"/>
+
+
+                        </group>
+                        <group>
+                            <field name="fecha_reg"/>
+                            <field name="banco" required="1" options="{'no_create': True}"/>
+                            <field name="presupuestos_rel" required="1" options="{'no_create': True}"/>
+                            <field name="total_layout"/>
+                        </group>
+
+
+                    </group>
+                    <group>
+                        <notebook>
+
+                            <page string="Relación de pagos">
+                                <group>
+                                    <group>
+
+                                        <field name="relacion_pagos" widget="many2many" mode="tree,form"
+                                               domain="[('estatus_layout', '!=', 'locked')]"/>
+
+                                        <!--<xpath expr="//field[@name='relacion_pagos']/tree//field[@name='date']" position="attributes">
+                                                <field name="date" position="attributes">
+                                                <attribute name="attrs">{'invisible': 1}</attribute>
+                                                </field>
+                                        </xpath>-->
+
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Relación de facturas">
+                                <group>
+                                    <field name="relacion_facturas" widget="many2many"
+                                           context="{'tree_view_ref':'account.view_move_tree'}" domain="[('state', '=', 'posted')]"/><!--context="{'tree_view_ref':'account.view_in_invoice_tree'}-->
+                                </group>
+                            </page>
+                            <page string="Pagos Masivos">
+                                <group>
+
+
+                                    <field name="pagos_masivos" widget="section_and_note_one2many"
+                                           mode="tree,kanban" attrs="{'readonly':[('state','=','validado')]}"/><!--widget="section_and_note_one2many"-->
+
+                                </group>
+                            </page>
+
+                        </notebook>
+                    </group>
+
+                </sheet>
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+
+        </field>
+    </record>
+
+    <record id="pagos_layout_tree" model="ir.ui.view">
+
+        <field name="name">XTree Pagos Layout View</field>
+        <field name="model">pagos_layout</field>
+        <field name="arch" type="xml">
+
+            <tree string="ine Tree">
+
+
+                <field name="name" readonly="1"/>
+                <field name="fecha_reg" readonly="1"/>
+                <field name="banco" readonly="1"/>
+
+
+            </tree>
+        </field>
+    </record>
+
+</odoo>

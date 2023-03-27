@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+   <record id="view_cuadrillas_ajuste_por_cantidad_form" model="ir.ui.view">
+       <field name="name">Vista formulario  </field>
+       <field name="model">cuadrillas_kilogramos</field>
+       <field name="arch" type="xml">
+           <form string="Ajuste por cantidad">
+               <sheet>
+                   <group>
+                       <field name="cantidad"/>
+                   </group>
+                   <footer>
+                       <button name="update_qty" string="Aceptar" type="object" class="oe_highlight"/>
+                       <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                   </footer>
+               </sheet>
+           </form>
+       </field>
+   </record>
+    <record id="action_open_cuadrillas_kilogramos_wizard" model="ir.actions.act_window">
+        <field name="name">Entrada de kilogramos</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cuadrillas_kilogramos</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="view_cuadrillas_ajuste_por_cantidad_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

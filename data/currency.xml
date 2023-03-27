@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+<!-- Este registro es necesario por las monedas de contpaqi (CFDI) -->
+    <record id="moneda_contpaqi_xxx" model="res.currency">
+
+        <field name="name">XXX</field>
+        <field name="rate">1.000000000000</field>
+        <field name="active">1</field>
+        <field name="symbol">$</field>
+    </record>
+</odoo>

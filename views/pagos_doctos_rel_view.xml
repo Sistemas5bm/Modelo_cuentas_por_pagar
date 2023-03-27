@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_pagos_doctos_rel_tree" model="ir.ui.view">
+
+        <field name="name">Pagos REPS View</field>
+        <field name="model">pagos_doctos_rel</field>
+        <field name="arch" type="xml">
+
+            <tree string="Pagos Doctos Rel Tree">
+
+
+                <field name="fecha" optional="show"/>
+                <field name="id_pago"/>
+                <field name="id_documento"/>
+                <field name="serie" optional="show"/>
+                <field name="folio"/>
+                <field name="moneda_dr"/>
+                <field name="tipo_cambio_dr"/>
+                <field name="num_parcialidad" optional="show"/>
+                <field name="imp_saldo_ant" sum="Importe Saldo Anterior"/>
+                <field name="imp_pagado" sum="Importe Pagado"/>
+                <field name="imp_saldo_insoluto" sum="Saldo Insoluto"/>
+
+
+            </tree>
+        </field>
+    </record>
+</odoo>

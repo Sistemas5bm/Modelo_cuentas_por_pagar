@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+<record id="wizard_test_extends" model="ir.ui.view">
+    <field name="name">wizard.extends.xxxxx</field>
+    <field name="model">base.partner.merge.automatic.wizard</field>
+    <field name="inherit_id" ref="base.base_partner_merge_automatic_wizard_form"/>
+    <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='partner_ids']" position="after">
+                    <field name="test"/>
+            <field name="partner_ids"/>
+        </xpath>
+    </field>
+</record>
+
+
+
+    </odoo>

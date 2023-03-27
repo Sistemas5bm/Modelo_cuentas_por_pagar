@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_contratos" model="ir.ui.view">
+        <field name="name">Vista Contratos</field>
+        <field name="model">contratos_compra_venta</field>
+        <field name="arch" type='xml'>
+
+                      <form>
+                          <header>
+                              <button string="Aprobar" type="object" name="aprobar_contrato" class="oe_highlight" states="borrador"/>
+                              <button string="Cancelar" type="object" name="cancelar_contrato" states="borrador,aprobado" />
+                              <field name="state" widget="statusbar" statusbar_visible="borrador,aprobado"/>
+
+                          </header>
+                <sheet>
+                    <center>
+                        <h1 style="color : black">
+                            CONTRATO
+                        <field name="num_contrato" readonly="1"/>
+                        </h1>
+                    </center>
+<widget name="web_ribbon" title="Archivado" bg_color="bg-danger" attrs="{'invisible': [('active','=',True)]}"/>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="proveedor"/>
+                            <field name="fecha_contrato"/>
+                            <field name="fecha_aprobacion" readonly="1"/>
+                            <field name="factura"/>
+                        </group>
+                        <group>
+                            <field name="active" widget="boolean_toggle"/>
+                            <field name="estado"/>
+                            <field name="ciudad"/>
+                            <field name="localidad"/>
+
+                        </group>
+                    </group>
+
+                    <field name="huertas"/>
+                </sheet>
+                <script>
+
+                    console.log('Hi World')
+                </script>
+            </form>
+
+        </field>
+    </record>
+
+</odoo>

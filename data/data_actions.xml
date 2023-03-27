@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="action_open_fletes" model="ir.actions.act_window">
+        <field name="name">Tarifas - Municipios</field>
+        <field name="res_model">tarifas_fletes</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_open_fletes_modelo_tts" model="ir.actions.act_window">
+        <field name="name">Municipios - fletes</field>
+        <field name="res_model">fletes_modelo_tts</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_open_fletes_descargas_wizard" model="ir.actions.act_window">
+        <field name="name">Descargas - fletes</field>
+        <field name="res_model">fletes_wizard</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+ 
+</odoo>

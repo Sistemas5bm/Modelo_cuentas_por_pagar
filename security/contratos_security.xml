@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- DEGREES-->
+        <!-- Acusmata-->
+
+
+        <record id="group_calibres_disciple" model="res.groups">
+            <field name="name">Vitality System</field>
+            <field name="comment">Vitality system comment</field>
+        </record>
+
+
+
+    </data>
+</odoo>

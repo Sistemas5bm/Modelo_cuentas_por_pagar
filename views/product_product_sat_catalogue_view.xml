@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_product_product_sat_catalogue_form" model="ir.ui.view">
+
+        <field name="name">Catalogue Sat Form View</field>
+        <field name="model">stock_sat_catalogue</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" optional="show"/>
+                            <field name="description" optional="show"/>
+                            <field name="products_products_rel" invisible="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+
+        </field>
+    </record>
+
+    <record id="x_tree" model="ir.ui.view">
+
+        <field name="name">XTree Sat Catalogue Product View</field>
+        <field name="model">stock_sat_catalogue</field>
+        <field name="arch" type="xml">
+
+            <tree string="Sat Catalogue Product Tree">
+
+
+                <field name="name" readonly="1"/>
+                <field name="description" readonly="1"/>
+                <field name="products_products_rel" invisible="1"/>
+
+            </tree>
+        </field>
+    </record>
+     <record id="view_lotes_search_product_product_sat" model="ir.ui.view">
+        <field name="name">huertas.search.product.product.sat</field>
+        <field name="model">stock_sat_catalogue</field>
+        <field name="arch" type="xml">
+
+            <search string="Busqueda productos Sat">
+                <field name="name" string="Busqueda Productos Sat"
+                       filter_domain="['|',('name', 'ilike', self),('description', 'ilike', self)]"/>
+            </search>
+
+        </field>
+    </record>
+
+
+
+</odoo>

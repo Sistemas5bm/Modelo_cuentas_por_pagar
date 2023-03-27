@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_create_fletes_modelo" model="ir.ui.view">
+        <field name="name">Creacion de fletes</field>
+        <field name="model">fletes_modelo_tts</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button string="Contabilizado CFDI" type="object" name="aprobar_cfdi_fletes" class="oe_highlight"
+                            confirm="Desea contabilizar CFDI" attrs="{'invisible':[('state_fletes', '=', 'aprobado_cfdi')]}"  />
+                    <button string="Ir borrador" type="object" name="ir_borrador_fletes" confirm="Desea ir a borrador"/>
+                    <button string="Recalcular" type="object" name="recarcular_actualizacion" confirm="Desea actualizar"  />
+                    <field name="state_fletes" widget="statusbar" statusbar_visible="borrador,aprobado_cfdi"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="fecha"/>
+                            <field name="huerta"/>
+                            <field name="ubicacion_municipio"/>
+                            <field name="poblacion"/>
+                            <field name="estado"/>
+                            <field name="status" placeholder="Tipo de fruta org/conv"/>
+                            <field name="nombre_produtor_modelo_tts"/>
+                            <field name="nombre_transportista"/>
+                            <field name="nombre_jefe_cuadrilla"/>
+                            <field name="beneficiario"/>
+                            <field name="regimen_resico"/>
+                            <field name="state"  invisible="1"/>
+                            <field name="peso_producto" invisible="1" />
+                        </group>
+                        <group>
+                            <field name="municipio"/>
+                            <field name="base_tarifa" readonly="1"/>
+                            <field name="importe_total_fletes_municipio"/>
+                            <field name="cajas_lote_fletes"/>
+                            <field name="cajas_mixtos_fletes"/>
+                            <field name="impuestos" widget="selection_and_note_one2many"
+                                   mode="tree,kanban"/>
+                            <field name="importe_mas_retencion"  />
+                            <field name="peso_promedio_caja" invisible="1"/>
+                        </group>
+                    </group>
+                    <h3>Observaciones</h3>
+                    <field name="observaciones" placeholder="Agregar una observacion"/>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="search_fletes_x" model="ir.ui.view">
+        <field name="name">Buscador flete</field>
+        <field name="model">fletes_modelo_tts</field>
+        <field name="arch" type="xml">
+            <search string="Busqueda fletes">
+                <field name="name" string="Cadenas Numericas"
+                       filter_domain="['|',('name', 'ilike', self),('fecha','ilike',self)]"/>
+                <field name="huerta" string="Cadenas de Texto Search"
+                       filter_domain="['|','|','|','|',('huerta','ilike',self),('municipio','ilike',self),('nombre_produtor_modelo_tts','ilike',self),
+                       ('nombre_transportista','ilike',self),('beneficiario','ilike',self)]"/>
+            </search>
+        </field>
+    </record>
+    <record id="tree_create_fletes" model="ir.ui.view">
+        <field name="name">Creacion de flete</field>
+        <field name="model">fletes_modelo_tts</field>
+        <field name="arch" type="xml">
+            <tree  >
+                <header>
+                   <button string="Contabilizado CFDI" type="object" name="aprobar_cfdi_fletes" class="oe_highlight"
+                            confirm="Desea contabilizar CFDI"/>
+                    <button string="Ir borrador" type="object" name="ir_borrador_fletes" confirm="Desea ir a borrador"
+                            attrs="{'invisible':[('state_fletes', '=', 'aprobado_cfdi')]}" />
+                    <button string="recalcular" type="object" name="recarcular_actualizacion" confirm="Desea actualizar"  />
+                </header>
+                <field name="name" optional="show"/>
+
+                <field name="bloqueo_seleccion_presupuesto" invisible="1"/>
+                <field name="fecha" optional="show"/>
+                <field name="huerta" optional="show"/>
+                <field name="es_opinion" optional="hide" widget="badge" decoration-danger="es_opinion == 'VENCIDO' or es_opinion == 'NO DOCTO'"
+                       decoration-success="es_opinion == 'VIGENTE' or es_opinion =='NO APLICA'"/>
+                <field name="es_ine" widget="badge" optional="show" decoration-success="es_ine == 'VIGENTE' or es_ine =='NO APLICA'"
+                       decoration-danger="es_ine == 'VENCIDO' or es_ine == 'NO DOCTO'"/>
+                <field name="es_cif" optional="show" widget="badge" decoration-danger="es_cif == 'VENCIDO' or es_cif == 'NO DOCTO'"
+                       decoration-success="es_cif == 'VIGENTE' or es_cif =='NO APLICA'"/>
+                <field name="contrato_fletes_bym" widget="badge" optional="show"
+                       decoration-success="contrato_fletes_bym == 'VIGENTE'"
+                       decoration-danger="contrato_fletes_bym == 'VENCIDO' or contrato_fletes_bym == 'NO DOCTO'"/>
+                <field name="ubicacion_municipio" optional="show"/>
+                <field name="poblacion" optional="show"/>
+                <field name="estado" optional="show"/>
+                <field name="municipio" optional="show" widget="badge"/>
+                <field name="cajas_lote_fletes" optional="show"/>
+                <field name="cajas_mixtos_fletes"/>
+                <field name="nombre_produtor_modelo_tts" optional="show"/>
+                <field name="carta_porte" widget="boolean_toggle"/>
+                <field name="nombre_transportista" optional="show"/>
+                <field name="nombre_jefe_cuadrilla" optional="show"/>
+                <field name="base_tarifa" optional="show" sum="sum_tarifa_base"/>
+                <field name="total_tarifa_inicial2" optional="show" sum="sum_con_impuestos"/>
+                <field name="desgloce_iva" optional="show" sum="suma_de_iva"/>
+                <field name="desgloce_retencion" optional="show" sum="suma_de_retencion"/>
+                <field name="desgloce_resico" optional="show" sum="suma_resico"/>
+                <field name="importe_mas_retencion" optional="show" sum="SumaTarifasFinales"/>
+                <field name="state_fletes" optional="show" widget="badge"/>
+                <field name="uuid" optional="show"/>
+                <field name="fecha_factura" optional="show"/>
+                <field name="estado_pago_selection" widget="badge" optional="show" decoration-danger="estado_pago_selection=='not_paid'"
+                       decoration-success="estado_pago_selection=='paid'"/>
+                <field name="provedor_factura" optional="show"/>
+                <field name="importe_factura" optional="show"/>
+
+                <field name="impuesto_iva" optional="hide"/>
+                <field name="impuesto_isrr_retenido" optional="hide"/>
+                <field name="impuesto_ieps_traslado" optional="hide"/>
+                <field name="impuesto_iva_retenido" optional="hide"/>
+                <field name="impuesto_traslado" optional="hide"/>
+                <field name="impuesto_retenciones" optional="hide"/>
+                <field name="isr_trasladado" optional="hide"/>
+                <field name="ieps_retenido" optional="hide"/>
+                <field name="conceptos" optional="show"/>
+                <field name="diferencia_total" optional="show"/>
+
+                <field name="chack_cuenta_decault_fletes" optional="show" widget="boolean_toggle"/>
+                <field name="regimen_resico" optional="show" widget="boolean_toggle"/>
+                <field name="beneficiario" optional="show"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

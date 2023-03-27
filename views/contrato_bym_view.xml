@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_contrato_bym_form" model="ir.ui.view">
+        <field name="name">Contrato_bym_view_form</field>
+        <field name="model">contrato_bym</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <h1 align="center">CONTRATO B Y M</h1>
+                    <group>
+                        <group>
+                            <field name="name"></field>
+                            <field name="contrato_bym_archivo"/>
+                        </group>
+                        <group>
+                            <field name="fecha_apertura"/>
+                            <field name="fecha_vencimiento"/>
+                        </group>
+
+                    </group>
+                    <notebook>
+                        <page string="Beneficiario">
+                            <group>
+                              <field name="beneficiario" widget="many2many"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_contrato_bym_tree" model="ir.ui.view">
+        <field name="name">Contrato_bym_view_tree</field>
+        <field name="model">contrato_bym</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="fecha_apertura"/>
+                <field name="fecha_vencimiento"/>
+                <field name="beneficiario"/>
+                <!--<field name="beneficiario2" optional="hide"/>
+                <field name="beneficiario3" optional="hide" readonly="1"/>
+                <field name="beneficiario_compute" invisible="1"/>-->
+            </tree>
+        </field>
+    </record>
+</odoo>

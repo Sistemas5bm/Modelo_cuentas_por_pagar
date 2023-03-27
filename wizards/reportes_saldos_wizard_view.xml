@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+   <!-- <report
+            id="report_estado_cuenta_card_2"
+            string="No Facturado"
+            model="reportes_saldos_wizard"
+            report_type="qweb-pdf"
+            name="cuentas_por_pagar.lotes_report_new"
+            file="cuentas_por_pagar.lotes_report_new"
+    />
+    <report
+            id="report_lotes_facturado_no_pagado_2"
+            string="Facturado No Pagado"
+            model="reportes_saldos_wizard"
+            report_type="qweb-pdf"
+            name="cuentas_por_pagar.lotes_report_new_facturado_no_pagado"
+            file="cuentas_por_pagar.lotes_report_new_facturado_no_pagado"
+    />
+
+    -->
+
+
+    <record id="view_reporting_saldos_form" model="ir.ui.view">
+        <field name="name">Vista Reportes Saldos</field>
+        <field name="model">reportes_saldos_wizard</field>
+        <field name="arch" type="xml">
+            <form string="Reporting Saldos">
+                <sheet>
+                    <group>
+                        <!-- <field name="name"/> -->
+                        <field name="date_start" attrs="{'invisible': [('provider_type','in',('presupuesto'))]}"/>
+                        <field name="date_end" attrs="{'invisible': [('provider_type','in',('presupuesto'))]}"/>
+
+                    </group>
+                    <group>
+                        <field name="date_type" widget="radio" attrs="{'invisible': [('provider_type','in',('presupuesto'))]}"/>
+                        <field name="provider_type" widget="radio"/>
+                        <field name="productor_id" attrs="{'invisible': ['|',('provider_type','in',('todo')),('provider_type','in',('presupuesto'))]}"/>
+                        <field name="presupuesto" attrs="{'invisible': ['|','|',('provider_type','in',('todo')),
+                         ('provider_type','in',('productor')),('provider_type','in',('emisor'))]}" options="{'no_create': True}"/>
+                        <field name="pagado_flete" widget="radio" attrs="{'invisible':[('provider_type','!=','todo')]}"/>
+                        <field name="presupuesto_fletes" attrs="{'invisible': [('provider_type', '!=','presupuesto' )]}"
+                           options="{'no_create':True}"/>
+                    </group>
+                    <footer>
+                        <button string="Create" name="create" invisible="1" type="object"/>
+                        <button name="print_no_facturado" string="Saldos Fruta x Pagar" type="object" class="oe_highlight"
+                        attrs="{'invisible': ['|','|','|',('date_type','in',('fecha_pago')),('date_type','in',('fecha_factura')),
+                        ('provider_type','in',('emisor')),('provider_type','in',('presupuesto'))]}"/>
+                        <button name="print_no_facturado_xls" string="Saldos Fruta x Pagar XLSX" type="object" class="oe_highlight"
+                        attrs="{'invisible': ['|','|','|',('date_type','in',('fecha_pago')),('date_type','in',('fecha_factura')),
+                        ('provider_type','in',('emisor')),('provider_type','in',('presupuesto'))]}"/>
+                        <button name="print_facturado_no_pagado" string="Facturas x Pagar" type="object" class="oe_highlight"
+                        attrs="{'invisible': ['|',('date_type','in',('fecha_pago')),('provider_type','in',('presupuesto'))]}"/>
+                        <button name="print_facturado_no_pagado_xls" string="Facturas x Pagar XLS" type="object" class="oe_highlight"
+                        attrs="{'invisible': ['|',('date_type','in',('fecha_pago')),('provider_type','in',('presupuesto'))]}"/>
+                        <button name="print3" string="Saldo de proveedor" type="object" class="oe_highlight"
+                        attrs="{'invisible': ['|','|','|',('date_type','in',('fecha_pago')),('provider_type','in',('productor')),
+                        ('provider_type','in',('emisor')),('provider_type','in',('presupuesto'))]}"/>
+                          <button name="print3_xls" string="Saldo de proveedor XLS" type="object" class="oe_highlight"
+                        attrs="{'invisible': ['|','|','|',('date_type','in',('fecha_pago')),('provider_type','in',('productor')),
+                        ('provider_type','in',('emisor')),('provider_type','in',('presupuesto'))]}"/>
+                        <button name="print_fact_no_pagado_datelle" string="Facturas Por Pagar Detalle" type="object" class="oe_highlight"
+                        attrs="{'invisible': ['|',('date_type','in',('fecha_pago')),('provider_type','in',('presupuesto'))]}"/>
+                        <button name="print_fact_no_pagado_datelle_xls" string="Facturas Por Pagar Detalle XLS" type="object" class="oe_highlight"
+                        attrs="{'invisible': ['|',('date_type','in',('fecha_pago')),('provider_type','in',('presupuesto'))]}"/>
+                        <button name="print_no_fac_datelle" string="Pendiente de factura Detalle" type="object" class="oe_highlight"
+                        attrs="{'invisible': ['|','|','|',('date_type','in',('fecha_pago')),('date_type','in',('fecha_factura')),
+                        ('provider_type','in',('emisor')),('provider_type','in',('presupuesto'))]}"/>
+                        <button name="print_no_fac_datelle_xls" string="Pendiente de factura Detalle XLS" type="object" class="oe_highlight"
+                        attrs="{'invisible': ['|','|','|',('date_type','in',('fecha_pago')),('date_type','in',('fecha_factura')),
+                        ('provider_type','in',('emisor')),('provider_type','in',('presupuesto'))]}"/>
+                        <button name="print_pagado" string="Reporte de pago (Emisor)" type="object" class="oe_highlight"
+                        attrs="{'invisible': ['|','|',('date_type','in',('fecha_lote')),('date_type','in',('fecha_factura')),('provider_type','in',('presupuesto'))]}"/>
+                        <button name="print_pagado_xls" string="Reporte de pago (Emisor) XLS" type="object" class="oe_highlight"
+                        attrs="{'invisible': ['|','|',('date_type','in',('fecha_lote')),('date_type','in',('fecha_factura')),('provider_type','in',('presupuesto'))]}"/>
+                        <button name="print_pagado_prod" string="Reporte de pago (Productor)" type="object" class="oe_highlight"
+                        attrs="{'invisible': ['|','|',('date_type','in',('fecha_lote')),('date_type','in',('fecha_factura')),('provider_type','in',('presupuesto'))]}"/>
+                        <button name="print_pagado_prod_xls" string="Reporte de pago (Productor) XLS" type="object" class="oe_highlight"
+                        attrs="{'invisible': ['|','|',('date_type','in',('fecha_lote')),('date_type','in',('fecha_factura')),('provider_type','in',('presupuesto'))]}"/>
+                        <button name="print_pagado_prod_det" string="Reporte de pago (Productor) Det" type="object" class="oe_highlight"
+                        attrs="{'invisible': ['|','|',('date_type','in',('fecha_lote')),('date_type','in',('fecha_factura')),('provider_type','in',('presupuesto'))]}"/>
+                        <button name="print_pagado_prod_det_xls" string="Reporte de pago (Productor) Det XLS" type="object" class="oe_highlight"
+                        attrs="{'invisible': ['|','|',('date_type','in',('fecha_lote')),('date_type','in',('fecha_factura')),('provider_type','in',('presupuesto'))]}"/>
+                        <button name="print_pagado_emi_det" string="Reporte de pago (Emisor) Det" type="object" class="oe_highlight"
+                        attrs="{'invisible': ['|','|',('date_type','in',('fecha_lote')),('date_type','in',('fecha_factura')),('provider_type','in',('presupuesto'))]}"/>
+                        <button name="print_pagado_emi_det_xls" string="Reporte de pago (Emisor) Det XLS" type="object" class="oe_highlight"
+                        attrs="{'invisible': ['|','|',('date_type','in',('fecha_lote')),('date_type','in',('fecha_factura')),('provider_type','in',('presupuesto'))]}"/>
+                         <button name="print_pres_xls" string="Reporte Presupuesto XLS" type="object" class="oe_highlight"
+                        attrs="{'invisible': ['|','|',('provider_type','in',('todo')),('provider_type','in',('productor')),('provider_type','in',('emisor'))]}"/>
+                        <button name="print_pres_pdf" string="Reporte Presupuesto PDF" type="object" class="oe_highlight"
+                        attrs="{'invisible': ['|','|',('provider_type','in',('todo')),('provider_type','in',('productor')),('provider_type','in',('emisor'))]}"/>
+
+                        <button name="print_fleteros_pdf" string="Reporte Fleteros PDF" type="object" class="oe_highlight"
+                           attrs="{'invisible':['|',('provider_type','=','presupuesto'),('provider_type','!=','todo')]}"/>
+                        <button name="print_reporte_pagos_fleteros_pdf" string="Lineas Fletes PDF"  type="object" class="oe_highlight"
+                        attrs="{'invisible':['|',('provider_type','=','presupuesto'),('provider_type','!=','todo')]}"/>
+                        <button name="print_reporte_feltes_facturas_pdf" string="Facturas Fletes PDF" type="object" class="oe_highlight"
+                        attrs="{'invisible':['|','|',('pagado_flete','=','sin_factura'),('provider_type','=','presupuesto'),('provider_type','!=','todo')]}"/>
+                        <button name="print_report_presupuesto_fletes_pdf" string="Presupuesto flete PDF" type="object" class="oe_highlight"
+                        attrs="{'invisible':[('provider_type','!=','presupuesto')]}"/>
+                        <button name="print_report_presupuesto_fletes_xls" string="Presupuesto flete XLS" type="object" class="oe_highlight"
+                        attrs="{'invisible':[('provider_type','!=','presupuesto')]}"/>
+
+                        <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_open_reporting_saldos_wizard" model="ir.actions.act_window">
+        <field name="name">Reporting Saldos</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">reportes_saldos_wizard</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="view_reporting_saldos_form"/>
+        <field name="target">new</field>
+
+    </record>
+</odoo>

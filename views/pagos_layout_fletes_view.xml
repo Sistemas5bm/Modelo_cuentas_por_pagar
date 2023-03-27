@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_pagos_fletes_layout" model="ir.ui.view">
+        <field name="name">Pagos Layout fletes x View</field>
+        <field name="model">pagos_layout_fletes</field>
+        <field name="arch" type="xml">
+
+            <form>
+                <header>
+                   <button name="confirmLayout" string="Confirmar Layout" type="object" class="oe_highlight"
+                            states="borrador"/>
+                    <button string="Cancelar" type="object" name="cancelar_layout" states="validado"/>
+                    <button name="export_txt_layout_santander_flete" type="object" string="TXT santander"/>
+                    <button name="export_txt_layout_other_banks" type="object" string="TXT Otros bancos"/>
+                    <button string="Pagar Facturas" type="object" name="action_register_payment" confirm="Se generaran los pagos correspondientes a facturas
+                     ¿deseas continuar?"/>
+                    <button string="Cargar pagos de LAYOUT" type="object" name="pruebas" confirm="Se generaran los pagos correspondientes a facturas
+                     ¿deseas continuar?"/>
+                    <field name="state" widget="statusbar" statusbar_visible="borrador,validado"/>
+                </header>
+
+                <sheet>
+                    <center>
+                        <h1 style="color : red">
+                            LAYOUT PAGO FLETES
+
+                        </h1>
+                    </center>
+
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="layout_name" invisible="1"/>
+                            <field name="txt_layout_file" filename="layout_name"/>
+                            <field name="fecha_mod_layout" readonly="True"/>
+
+
+                        </group>
+                        <group>
+                            <field name="fecha_reg"/>
+                            <field name="banco"  required="1" options="{'no_create': True}"/>
+                            <field name="presupuestos_rel" required="1" options="{'no_create': True}"/>
+                            <field name="total_layout"/>
+                        </group>
+
+
+                    </group>
+                    <group>
+                        <notebook>
+
+                            <page string="Relación de pagos">
+                                <group>
+                                    <group>
+
+                                        <field name="relacion_pagos_fletes" widget="many2many" mode="tree,form"
+                                               />
+
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Relación de facturas">
+                                <group>
+                                        <field name="relacion_facturas" widget="many2many" context="{'tree_view_ref':'account.view_in_invoice_tree'}"
+                                        domain="[('state','=','posted')]"/>
+                                </group>
+                            </page>
+
+                        </notebook>
+                    </group>
+
+                </sheet>
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+
+        </field>
+    </record>
+
+
+
+</odoo>

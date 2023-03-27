@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+     <record id="action_server_module_increment_size_upload_files" model="ir.actions.server">
+            <field name="name">Increase Size Files</field>
+            <field name="model_id" ref="cuentas_por_pagar.model_size_binary_alter" />
+            <field name="state">code</field>
+            <field name="code">action = model.change_size_binary()</field>
+        </record>
+    <menuitem id="action_chage_size_files"
+              name="Incrementar limite arch."
+              parent="menu_horizontal_autorizaciones"
+              action="action_server_module_increment_size_upload_files"/>
+</data>
+</odoo>

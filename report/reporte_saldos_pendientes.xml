@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="action_report_saldosz" model="ir.actions.report">
+        <field name="name">SaldosRep</field>
+        <field name="model">reporte_saldos</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cuentas_por_pagar.report_saldos</field>
+        <field name="report_file">cuentas_por_pagar.report_saldos</field>
+        <field name="print_report_name">('Saldos - %s' %(object.name))</field>
+        <field name="binding_model_id" ref="model_reporte_saldos"/>
+        <field name="binding_type">report</field>
+
+    </record>
+
+    <template id="report_saldos">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div style="margin-bottom:20px;">De: <span style="margin-right:50px;" t-esc="date_start"/> A: <span style="margin-right:10px;" t-esc="date_end"/></div>
+                        <center>
+
+
+                            <div class="alert alert-primary" role="alert">
+                                <p>Saldos de pago Validado</p>
+
+                            </div>
+                            <div>
+                                <div class="col-9">
+                                    <h2>
+                                        <span t-field="o.name"/>
+                                    </h2>
+                                    <left>
+                                        <ul class="list-inline" style="font-size:20px;">
+
+
+                                        </ul>
+                                    </left>
+                                </div>
+                            </div>
+                            <!-- detalle tabla lotes-->
+                            <div class="alert alert-success" role="alert">
+                                <p>Saldos de lotes</p>
+
+                            </div>
+
+                            <table class="table table-sm" style="margin-top:30px">
+
+                                <thead>
+                                    <th>Lote</th>
+
+                                </thead>
+                                <tbody>
+                                    <!-- inicio de funcion de reoporteo-->
+
+                                    <t t-set="total" t-value="0.0"/>
+                                    <tr t-foreach="o.lotes_no_facturados" t-as="l">
+                                        <t t-set="total" t-value="total+l.importe"/>
+
+                                        <td>
+                                            <span t-field="l.id_partner.name"/>
+                                            <t t-esc="'${0:,.2f}'.format(float(l.importe))"/>
+                                        </td>
+
+
+                                    </tr>
+                                <tr class="text_right">
+                                          <td class="text_right">TOTAL=<t t-esc="'${0:,.2f}'.format(float(total))"/></td>
+                                </tr>
+
+                                    <!--Fin de reporteo-->
+
+                                </tbody>
+
+                            </table>
+
+
+                        </center>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

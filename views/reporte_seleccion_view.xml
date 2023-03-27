@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+
+
+    <record id="view_reporte_seleccion_tree" model="ir.ui.view">
+
+        <field name="name">REPORTE SELECCION View</field>
+        <field name="model">lotes_corrida</field>
+        <field name="arch" type="xml">
+
+            <tree string="REPORTE SELECCION Tree">
+
+
+                <field name="name" />
+                <field name="fecha" />
+                <field name="id_lote" />
+                <field name="peso_neto" />
+                <field name="producto" />
+                <field name="cajas" />
+                <field name="kilogramos" />
+                <field name="exportacion" />
+                <field name="nacional" />
+                <field name="merma" />
+                <field name="porc_exportacion" />
+                <field name="porc_nacional" />
+                <field name="porc_merma" />
+
+            </tree>
+        </field>
+    </record>
+</odoo>

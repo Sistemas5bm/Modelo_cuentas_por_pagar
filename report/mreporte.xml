@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+        <!--<record id="action_report_fletes" model="ir.actions.report">
+        <field name="name">Fletes-pdf</field>
+        <field name="model">fletes_modelo_tts</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">clases_udemy.report_fletes</field>
+        <field name="report_file">clases_udemy.report_fletes</field>
+        <field name="print_report_name">('Flete - %s' %(object.name))</field>
+        <field name="binding_model_id" ref="model_fletes_modelo_tts"/>
+        <field name="binding_type">report</field>
+    </record>
+    <template id="report_fletes">
+        <t t-call="web.basic_layout">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="web.external_layout">
+                <div class="footer">
+
+                </div>
+            </t>
+        </t>
+    </t>
+    </template>-->
+</odoo>

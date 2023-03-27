@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="category_productor" model="res.partner.category">
+
+        <field name="name">Productor</field>
+
+    </record>
+    <record id="category_proveedor" model="res.partner.category">
+
+        <field name="name">Proveedor</field>
+
+    </record>
+
+    <record id="category_comercializadora" model="res.partner.category">
+
+        <field name="name">Comercializadora</field>
+
+    </record>
+
+     <record id="category_corte" model="res.partner.category">
+
+        <field name="name">Servicio de corte</field>
+
+    </record>
+
+     <record id="category_acarreo" model="res.partner.category">
+
+        <field name="name">Servicio de acarreo</field>
+
+    </record>
+
+         <record id="category_jefe_acopio" model="res.partner.category">
+
+        <field name="name">Jefe de acopio</field>
+
+    </record>
+
+</odoo>

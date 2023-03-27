@@ -1,0 +1,216 @@
+<odoo>
+
+    <template id="lotes_fleteros3">
+
+        <t t-if="estado_pago == 'no_pagado'">
+
+
+                        <t t-call="web.html_container">
+                            <t t-call="web.external_layout">
+                                <div class="page">
+                                    <div class="oe_structure"/>
+                                    <div style="margin-bottom:20px;">ESTADO:
+                                        <t t-if="estado_pago == 'no_pagado'">
+                                            <h4>NO PAGADO</h4>
+                                        </t>
+                                    </div>
+                                    <div style="margin-bottom:20px;">De:
+                                        <span style="margin-right:50px;" t-esc="date_start"/>
+                                        A:
+                                        <span style="margin-right:10px;" t-esc="date_end"/>
+                                    </div>
+
+                                    <div style="text-align:center;">
+                                        <h4 style="margin-bottom:16px;">Reporte facturas fleteros</h4>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <table class="table table_condensed">
+                                            <t t-if="estado_pago == 'no_pagado' ">
+
+                                                <thead>
+
+                                                    <tr>
+                                                        <th style="text-align:left;">
+                                                            <strong>UUID:</strong>
+                                                        </th>
+
+                                                        <th style="text-align:left;">
+                                                            <strong>FECHA:</strong>
+                                                        </th>
+
+                                                        <th style="text-align:left;">
+                                                            <strong>EMISOR:</strong>
+                                                        </th>
+
+                                                        <th style="text-align:left;">
+                                                            <strong>IMPORTE:</strong>
+                                                        </th>
+
+                                                    </tr>
+                                                </thead>
+                                            </t>
+
+
+                                            <t t-set="suma_amount" t-value="0"/>
+                                            <t t-foreach="vals" t-as="o">
+
+                                                    <t t-if="o['estado_pago'] != 'paid'">
+                                                        <tbody>
+                                                            <th t-esc="o['uuid']"/>
+                                                            <th t-esc="o['fecha_factura']"/>
+                                                            <th t-esc="o['provedor_factura']"/>
+                                                            <th t-esc="'${0:,.2f}'.format(float(o['importe_final']))"/>
+                                                            <t t-set="suma_amount"
+                                                               t-value="suma_amount+(float(o['importe_final']))"/>
+                                                        </tbody>
+                                                    </t>
+
+
+                                            </t>
+                                            <tbody>
+                                                <tr>
+
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th>
+                                                        <div class="row justify-content-end" style="padding-top: 30px;">
+                                                            <div>
+                                                                <table class="table table-sm" align="right">
+                                                                    <tbody>
+
+                                                                        <tr>
+                                                                            <td>TOTAL:</td>
+                                                                            <td>
+                                                                                <t t-esc="'${0:,.2f}'.format(float(suma_amount))"/>
+                                                                            </td>
+                                                                        </tr>
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </th>
+                                                </tr>
+                                            </tbody>
+
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </t>
+                        </t>
+
+                    </t>
+
+        <t t-if="estado_pago == 'pagado'">
+
+
+                    <t t-call="web.html_container">
+                        <t t-call="web.external_layout">
+                            <div class="page">
+                                <div class="oe_structure"/>
+                                <div style="margin-bottom:20px;">ESTADO:
+                                    <t t-if="estado_pago == 'no_pagado'">
+                                        <h4>NO PAGADO</h4>
+                                    </t>
+                                    <t t-if="estado_pago == 'pagado'">
+                                        <h4>PAGADO</h4>
+                                    </t>
+                                </div>
+                                <div style="margin-bottom:20px;">De:
+                                    <span style="margin-right:50px;" t-esc="date_start"/>
+                                    A:
+                                    <span style="margin-right:10px;" t-esc="date_end"/>
+                                </div>
+
+                                <div style="text-align:center;">
+                                    <h4 style="margin-bottom:16px;">Reporte facturas fleteros</h4>
+                                </div>
+
+
+                                <div class="row">
+                                    <table class="table table_condensed">
+                                        <t t-if="estado_pago == 'pagado' ">
+
+                                            <thead>
+
+                                                <tr>
+                                                    <th style="text-align:left;">
+                                                        <strong>UUID:</strong>
+                                                    </th>
+
+                                                    <th style="text-align:left;">
+                                                        <strong>FECHA:</strong>
+                                                    </th>
+
+                                                    <th style="text-align:left;">
+                                                        <strong>EMISOR:</strong>
+                                                    </th>
+
+                                                    <th style="text-align:left;">
+                                                        <strong>IMPORTE:</strong>
+                                                    </th>
+
+                                                </tr>
+                                            </thead>
+                                        </t>
+
+
+                                        <t t-set="suma_amount" t-value="0"/>
+                                        <t t-foreach="vals" t-as="o">
+
+                                                <t t-if="o['estado_pago']!= 'not_paid'">
+                                                    <tbody>
+                                                        <th t-esc="o['uuid']"/>
+                                                        <th t-esc="o['fecha_factura']"/>
+                                                        <th t-esc="o['provedor_factura']"/>
+                                                        <th t-esc="'${0:,.2f}'.format(float(o['importe_final']))"/>
+                                                        <t t-set="suma_amount"
+                                                           t-value="suma_amount+(float(o['importe_final']))"/>
+                                                    </tbody>
+                                                </t>
+
+                                        </t>
+                                        <tbody>
+                                            <tr>
+
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th>
+                                                    <div class="row justify-content-end" style="padding-top: 30px;">
+                                                        <div>
+                                                            <table class="table table-sm" align="right">
+                                                                <tbody>
+
+                                                                    <tr>
+                                                                        <td>TOTAL:</td>
+                                                                        <td>
+                                                                            <t t-esc="'${0:,.2f}'.format(float(suma_amount))"/>
+                                                                        </td>
+                                                                    </tr>
+
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                            </tr>
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+                            </div>
+                        </t>
+                    </t>
+
+                </t>
+
+
+    </template>
+
+</odoo>

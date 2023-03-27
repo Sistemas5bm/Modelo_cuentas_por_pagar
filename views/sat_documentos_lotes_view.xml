@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_bico" model="ir.ui.view">
+
+        <field name="name">BICO</field>
+        <field name="model">sat_documentos_lotes</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <center>
+                        <h1 style="color : black">
+                            BICO
+
+                        </h1>
+                    </center>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="bico_file" filename="bico_filename"/>
+                            <field name="bico_filename" invisible="1"/>
+
+
+                        </group>
+                    </group>
+                </sheet>
+                <script>
+
+                    console.log('Hi World')
+                </script>
+            </form>
+
+        </field>
+    </record>
+
+    <record id="view_cif_tree" model="ir.ui.view">
+
+        <field name="name">BICO View</field>
+        <field name="model">sat_documentos_lotes</field>
+        <field name="arch" type="xml">
+
+            <tree string="BICO Tree">
+
+
+                <field name="name" />
+                <field name="bico_file" filename="bico_filename" optional="show" widget="binary"/>
+                <field name="bico_filename" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

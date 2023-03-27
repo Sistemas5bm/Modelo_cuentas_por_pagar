@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_clonar_productos_form" model="ir.ui.view">
+        <field name="name">duplicidad de datos</field>
+        <field name="model">relacion_fatura_copia</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="descripcion"/>
+                            <field name="cuenta"/>
+                            <field name="cuenta_analitica"/>
+                            <field name="etiquetas_analiticas"/>
+                            <field name="cantidad"/>
+                        </group>
+                        <group>
+                            <field name="udm"/>
+                            <field name="precio"/>
+                            <field name="descuento"/>
+                            <field name="impuestos"/>
+                            <field name="sub_total"/>
+                            <field name="pedido_compra"/>
+                        </group>
+                    </group>
+
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+    <record id="view_clonar_productos_tree" model="ir.ui.view">
+        <field name="name">Duplicidad de datose</field>
+        <field name="model">relacion_fatura_copia</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" optional="show"/>
+                            <field name="descripcion" optional="show"/>
+                            <field name="cuenta" optional="hide"/>
+                            <field name="cuenta_analitica" optional="hide"/>
+                            <field name="etiquetas_analiticas" optional="hide"/>
+                            <field name="cantidad" optional="show"/>
+
+                            <field name="udm" optional="show"/>
+                            <field name="precio" optional="show"/>
+                            <field name="descuento" optional="hide"/>
+                            <field name="impuestos" optional="hide"/>
+                            <field name="sub_total" optional="show"/>
+                            <field name="pedido_compra" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

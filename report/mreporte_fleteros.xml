@@ -1,0 +1,183 @@
+<odoo>
+
+    <template id="lotes_fleteros">
+
+        <t t-foreach="vals" t-as="y">
+            <t t-set="cont" t-value="1"/>
+
+            <t t-foreach="vals" t-as="x">
+                <t t-if="x['acum'] == 1">
+                    <t t-if="x['beneficiario'] == y['beneficiario'] and x['id_flete'] == y['id_flete']">
+
+
+                        <t t-call="web.html_container">
+                            <t t-call="web.external_layout">
+                                <div class="page">
+                                    <div class="oe_structure"/>
+                                    <div style="margin-bottom:20px;">De:
+                                        <span style="margin-right:50px;" t-esc="date_start"/>
+                                        A:
+                                        <span style="margin-right:10px;" t-esc="date_end"/>
+                                    </div>
+
+                                    <div style="text-align:center;">
+                                        <h4 style="margin-bottom:16px;">Reporte fleteros</h4>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <table class="table table_condensed">
+                                            <thead>
+                                                <tr>
+                                                    <th style="text-align:left;">
+                                                        <strong>BENEFICIARIO:</strong>
+                                                    </th>
+
+                                                    <th style="text-align:left;">
+                                                        <strong>ID_FLETE:</strong>
+                                                    </th>
+
+                                                    <th style="text-align:left;">
+                                                        <strong>FECHA:</strong>
+                                                    </th>
+
+                                                    <th style="text-align:left;">
+                                                        <strong>HUERTA:</strong>
+                                                    </th>
+
+                                                    <th style="text-align:left;">
+                                                        <strong>MUNICIPIO:</strong>
+                                                    </th>
+
+                                                    <th style="text-align:left;">
+                                                        <strong>CAJAS CAMION:</strong>
+                                                    </th>
+
+                                                    <th style="text-align:left;">
+                                                        <strong>NOMBRE TRANSPORTISTA:</strong>
+                                                    </th>
+
+                                                    <th style="text-align:left;">
+                                                        <strong>TOTAL:</strong>
+                                                    </th>
+
+                                                </tr>
+                                            </thead>
+
+
+                                            <tbody WIDTH="500">
+
+                                                <t t-set="acum" t-value="0"/>
+                                                <t t-set="cajas" t-value="0"/>
+                                                <t t-set="importe_iva" t-value="0"/>
+                                                <t t-set="importe_retencion" t-value="0"/>
+                                                <t t-set="acum_iva" t-value="0"/>
+                                                <t t-set="acum_retencion" t-value="0"/>
+                                                <t t-set="cajas_iva" t-value="0"/>
+                                                <t t-set="cajas_retencion" t-value="0"/>
+
+                                                <t t-foreach="vals" t-as="o">
+
+                                                    <t t-if="x['beneficiario'] == y['beneficiario'] and x['beneficiario'] == o['beneficiario']">
+
+                                                        <tr>
+
+                                                            <th t-esc="o['beneficiario']" style="font-size:80%;"/>
+                                                            <th t-esc="o['id_flete']"/>
+                                                            <th t-esc="o['fecha']" style="font-size:80%;"/>
+                                                            <th t-esc="o['huerta']" style="font-size:80%;"/>
+                                                            <th t-esc="o['name_municipio']" style="font-size:100%;"/>
+                                                            <th t-esc="o['cajas_camion']"/>
+                                                            <th t-esc="o['name_trasportista']" style="font-size:80%;"/>
+                                                            <th t-esc="'${0:,.2f}'.format(float(o['tot']))"/>
+                                                            <!--<th t-esc="o['importe_tarifa_inicial']" />-->
+                                                            <t t-set="acum" t-value="acum+float(o['tot'])"/>
+                                                            <t t-set="cajas" t-value="float(o['cajas_camion'])"/>
+                                                            <t t-set="importe_iva"
+                                                               t-value="importe_iva+(float(o['importe_tarifa_inicial'])*0.16)"/>
+                                                            <t t-set="importe_retencion"
+                                                               t-value="importe_retencion+(float(o['importe_tarifa_inicial'])*-0.04)"/>
+
+                                                            <t t-if="cajas > 300">
+                                                                <t t-set="cajas_iva"
+                                                                   t-value="cajas_iva+(((cajas-300)*15)*0.16)"/>
+                                                                <t t-set="cajas_retencion"
+                                                                   t-value="cajas_retencion+(((cajas-300))*15*-0.04)"/>
+                                                            </t>
+
+                                                            <t t-set="acum_iva"
+                                                               t-value="acum_iva+(importe_iva+cajas_iva)"/>
+                                                            <t t-set="acum_retencion"
+                                                               t-value="acum_retencion+(importe_retencion+cajas_retencion)"/>
+
+
+                                                        </tr>
+
+                                                    </t>
+                                                    <tr class="text_right"></tr>
+                                                </t>
+
+                                                <tr>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th>
+                                                    </th>
+                                                    <th>
+                                                        <div class="row justify-content-end" style="padding-top: 30px;">
+                                                            <div>
+                                                                <table class="table table-sm" align="right">
+                                                                    <tbody>
+                                                                        <tr>
+
+                                                                            <td>IVA:</td>
+                                                                            <td>$
+                                                                                <t t-esc="'{0:,.2f}'.format(float(acum_iva))"/>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+
+                                                                            <td>
+                                                                                <h6>RETENCION:</h6>
+                                                                            </td>
+                                                                            <td>$
+                                                                                <t t-esc="'{0:,.2f}'.format(float(acum_retencion))"/>
+                                                                            </td>
+                                                                        </tr>
+
+                                                                        <tr>
+                                                                            <td>TOTAL:</td>
+                                                                            <td>$
+                                                                                <t t-esc="'{0:,.2f}'.format(float(acum))"/>
+                                                                            </td>
+                                                                        </tr>
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </th>
+                                                </tr>
+
+                                            </tbody>
+
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </t>
+                        </t>
+                    </t>
+
+
+                </t>
+            </t>
+        </t>
+
+
+    </template>
+
+</odoo>

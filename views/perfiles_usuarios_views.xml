@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_permisos_de_usuarios" model="ir.ui.view">
+        <field name="name">Permisos para los usuarios</field>
+        <field name="model">permisos_usuarios</field>
+        <field name="arch" type="xml">
+            <form>
+            <sheet>
+                <h3 aling="center">Permisos a los usuarios</h3>
+                <group>
+                    <field name="name" required="1"/>
+                    <field name="type_user"/>
+                </group>
+                <group>
+
+                </group>
+            </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <record id="view_res_users_form_extends" model="ir.ui.view">
+        <field name="name">view.res.user.form</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <!-- Se coloca el uuid despues de el @name=id -->
+            <xpath expr="//field[@name='name']" position="after">
+
+            </xpath>
+            <xpath expr="//notebook//page[@name='references']" position="after">
+                <page string="Autorizaciones CxP">
+                    <group>
+                        <field name="type_user_cxp"/>
+                        <field name="lotes_descarga"/>
+                    <field name="fletes_descarga"/>
+                    <field name="cdis_descarga"/>
+                    <field name="cortes_descarga"/>
+                    </group>
+                </page>
+            </xpath>
+
+
+        </field>
+    </record>
+
+</odoo>

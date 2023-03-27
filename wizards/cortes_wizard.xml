@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+   <record id="view_download_cortes_form" model="ir.ui.view">
+       <field name="name">Vista formulario descarga de cuadrillas</field>
+       <field name="model">cortes_wizard</field>
+       <field name="arch" type="xml">
+           <form string="Descarga Cortes">
+               <sheet>
+                   <group>
+                      <!-- <field name="name"/> -->
+                       <field name="fecha_inicial"/>
+                       <field name="fecha_final"/>
+                       <field name="cortes_descarga" invisible="1"/>
+                   </group>
+                   <footer>
+                       <button name="create" string="Guardar" type="object" invisible="1"/>
+                       <button name="method_a" string="Descargar Cortes" type="object" class="btn btn_primary"
+                               icon="fa-bolt" attrs="{'invisible': [('cortes_descarga', '=', False)]}"/>
+                       <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                   </footer>
+               </sheet>
+           </form>
+       </field>
+   </record>
+    <record id="action_open_cortes_descarga_wizard" model="ir.actions.act_window">
+        <field name="name">Descarga de cortes</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cortes_wizard</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="view_download_cortes_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

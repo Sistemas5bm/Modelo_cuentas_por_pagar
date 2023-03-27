@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_cortesx" model="ir.ui.view">
+        <field name="name">Cortes</field>
+        <field name="model">cortes</field>
+        <field name="arch" type='xml'>
+
+            <form>
+
+                <header>
+                    <button name="calcularCuadrillasExtra" type="object" string="Cuadrilla Extra"
+                            class="oe_highlight" invisible="0" confirm="¿Seguro que deseas crear cuadrillas extras?"/>
+                    <button name="open_wizard_entrada_kilogramos" type="object" string="Ajuste"
+                            class="oe_highlight" invisible="0" confirm="¿Deseas realizar un ajuste?"/>
+                    <button name="add_salida_falso" type="object" string="Salida en falso"
+                            class="oe_highlight" invisible="0" confirm="¿Deseas integrar una salida en falso?"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Archivado" bg_color="bg-danger"
+                            attrs="{'invisible': [('active','=',True)]}"/>
+
+                    <group>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="id_acuerdo" readonly="1"/>
+                            <field name="id_orden_corte" readonly="1"/>
+                            <field name="nombre_productor" readonly="1"/>
+                            <field name="sader" readonly="1"/>
+                            <field name="fecha" readonly="1"/>
+                            <field name="poblacion" readonly="1"/>
+                            <field name="tipo_corte" readonly="1"/>
+                            <field name="transportista" readonly="1"/>
+                            <field name="empresa_corte" readonly="1"/>
+                            <field name="jefe_acopio" readonly="1"/>
+                            <field name="candado" readonly="1"/>
+                            <field name="cajas_entregadas" readonly="1"/>
+                            <field name="peso_promedio_cajas_corte" readonly="1" invisible="1"/>
+                            <field name="peso_promedio_cajas_corte2" readonly="1"/>
+                            <field name="peso_neto" readonly="1"/>
+                            <field name="peso_productor" readonly="1"/>
+                            <field name="peso_nuevo_productor" readonly="1" />
+                            <field name="cuadrilla_extra" invisible="1"/>
+                            <field name="bico" readonly="1"/>
+                            <field name="ticket" readonly="1"/>
+                            <field name="active" widget="boolean_toggle"/>
+                            <field name="kilogramos_ajuste" readonly="1"/>
+                            <field name="id_lote" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="cuadrilla"/>
+                            <field name="cuadrilla_datos" invisible="1"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+                <script>
+                    console.log('Hi World')
+                </script>
+            </form>
+        </field>
+    </record>
+    <!--  Vista tree    -->
+    <record id="view_cortesp_tree" model="ir.ui.view">
+
+        <field name="name">Cortes Treex View</field>
+        <field name="model">cortes</field>
+        <field name="arch" type="xml">
+            <tree string="Cortes Tree" multi_edit="1" limit="500">
+                <header>
+                    <button name="calcularCuadrillasExtra" type="object" string="Cuadrilla Extra"
+                            class="oe_highlight" invisible="0" confirm="¿Seguro que deseas crear cuadrillas extras?"/>
+                    <button name="open_wizard_entrada_kilogramos" type="object" string="Ajuste"
+                            class="oe_highlight" invisible="0" confirm="¿Deseas realizar un ajuste?"/>
+                </header>
+                <field name="name" readonly="1" optional="show"/>
+                <field name="nombre_productor" readonly="1" optional="show"/>
+                <field name="sader" readonly="1" optional="show"/>
+                <field name="fecha" readonly="1" optional="show"/>
+                <field name="poblacion" readonly="1" optional="show"/>
+                <field name="empresa_corte" optional="show"/>
+                <field name="transportista" optional="show"/>
+                <field name="peso_productor" sum="Kilogramos" optional="show"/>
+                <field name="cajas_entregadas" optional="show"/>
+                <field name="peso_promedio_cajas_corte2" widget="badge" decoration-success="state_alert_corte == 'margen'"
+                decoration-warning="state_alert_corte == 'alerta_faltante'" decoration-danger="state_alert_corte == 'alerta_exeso'"
+                optional="show"/>
+                <field name="state_alert_corte" optional="show"/>
+                <field name="kilogramos_ajuste" readonly="1" sum="Total" optional="show"/>
+                <field name="total_ajuste" sum="Total Ajuste" optional="show"/>
+                <field name="cuadrilla_extra" sum="SumaDeCuadrilla" optional="show"/>
+                <field name="total_importe" sum="Importe" optional="show"/>
+                <field name="cuadrilla_datos" optional="show" widget="badge"/>
+                <field name="id_lote" readonly="1" optional="show"/>
+                <field name="es_opinion" optional="hide" widget="badge" decoration-danger="es_opinion == 'VENCIDO' or es_opinion == 'NO DOCTO'"
+                       decoration-success="es_opinion == 'VIGENTE' or es_opinion=='NO APLICA' "/>
+                <field name="es_cif" optional="show" widget="badge" decoration-danger="es_cif == 'VENCIDO' or es_cif == 'NO DOCTO'"
+                       decoration-success="es_cif == 'VIGENTE' or es_cif == 'NO APLICA'  "/>
+                <field name="es_ine" widget="badge" optional="show" decoration-success="es_ine == 'VIGENTE' or es_ine == 'NO APLICA' "
+                       decoration-danger="es_ine == 'VENCIDO' or es_ine == 'NO DOCTO'"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_cortes_search" model="ir.ui.view">
+        <field name="name">cortes.search</field>
+        <field name="model">cortes</field>
+        <field name="arch" type="xml">
+            <search string="Busqueda cortes">
+                <field name="name" string="Cadenas Numericas"
+                       filter_domain="['|',('name', 'ilike', self),('peso_productor','ilike',self)]"/>
+                <field name="nombre_productor" string="Cadenas de Texto Search"
+                       filter_domain="['|',('nombre_productor', 'ilike', self),('sader','ilike',self)]"/>
+            </search>
+        </field>
+    </record>
+
+</odoo>
+

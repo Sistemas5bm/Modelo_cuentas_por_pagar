@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="action_report_presupuesto" model="ir.actions.report">
+        <field name="name">Presupuesto</field>
+        <field name="model">presupuesto_lotes</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cuentas_por_pagar.report_presupuesto</field>
+        <field name="report_file">cuentas_por_pagar.report_presupuesto</field>
+        <field name="print_report_name">('Presupuesto - %s' %(object.name))</field>
+        <field name="binding_model_id" ref="model_presupuesto_lotes"/>
+        <field name="binding_type">report</field>
+
+    </record>
+
+    <template id="report_presupuesto">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div style="margin-bottom:20px;">De: <span style="margin-right:50px;" t-esc="date_start"/> A: <span style="margin-right:10px;" t-esc="date_end"/></div>
+                        <center>
+                            <t t-if="o.state == 'draft'">
+                                <div class="alert alert-danger" role="alert">
+                                    <p>Presupuesto de pago Borrador</p>
+
+                                </div>
+                            </t>
+
+                            <t t-else="">
+                                <div class="alert alert-primary" role="alert">
+                                    <p>Presupuesto de pago Validado</p>
+
+                                </div>
+                                <div>
+                                    <div class="col-9">
+                                        <h2>
+                                            <span t-field="o.name"/>
+                                        </h2>
+                                        <left>
+                                            <ul class="list-inline" style="font-size:20px;">
+                                                <li class="text-right" t-if="o.fecha">Fecha:
+                                                    <span t-field="o.fecha"/>
+                                                </li>
+                                                <li class="text-right" t-if="o.res">Estado de Pago:
+                                                    <span t-field="o.res"/>
+                                                </li>
+                                                <li class="text-right" t-if="o.budget_total">Total:
+                                                    <span t-field="o.budget_total"/>
+
+                                                </li>
+
+                                            </ul>
+                                        </left>
+                                    </div>
+                                </div>
+                                <!-- detalle tabla lotes-->
+                                <div class="alert alert-success" role="alert">
+                                    <p>Provision de lotes</p>
+
+                                </div>
+
+                                <table class="table table-sm" style="margin-top:30px">
+
+                                    <thead>
+                                        <th>Lote</th>
+                                        <th>Huerta</th>
+                                        <th>Productor</th>
+                                        <th>Emisor Factura</th>
+                                        <th>Importe</th>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr t-foreach="o.lotes_provisionados" t-as="l">
+
+                                            <td>
+                                                <span t-field="l.name"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="l.lotes_huerta"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="l.lotes_nombre_productor"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="l.id_partner"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="l.abono_importe_con_impuesto"/>
+                                            </td>
+
+
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+
+                                <div class="row justify-content-end" style="padding-top: 30px;">
+
+                                    <div class="col-3">
+                                        <table class="table table-sm">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Subtotal</td>
+                                                    <td class="text-right"> <span t-field="o.lotes_total"/> </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                                <!-- detalle tabla lotes fin -->
+
+                                <div class="alert alert-success" role="alert">
+                                    <p>Facturas adicionales</p>
+
+                                </div>
+
+                                <!-- detalle tabla facturas adicionales-->
+                                <table class="table table-sm" style="margin-top:30px">
+
+                                    <thead>
+
+                                        <th>Uuid</th>
+                                        <th>Importe adeudado</th>
+
+                                    </thead>
+                                    <tbody>
+
+                                        <tr t-foreach="o.facturas_adicionales" t-as="a">
+
+                                            <td>
+                                                <span t-field="a.partner_id.name"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="a.amount_residual_signed"/>
+                                            </td>
+
+
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+                                <!-- detalle tabla facturas adicionales fin -->
+                              <div class="row justify-content-end" style="padding-top: 30px;">
+
+                                    <div class="col-3">
+                                        <table class="table table-sm">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Subtotal</td>
+                                                    <td class="text-right"> <span t-field="o.aditional_invoices_total"/> </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+
+
+
+                            </t>
+
+
+                        </center>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

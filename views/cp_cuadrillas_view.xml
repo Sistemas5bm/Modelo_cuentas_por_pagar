@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_cuadrillas" model="ir.ui.view">
+        <field name="name">Cuadrillas</field>
+        <field name="model">cuadrillas</field>
+        <field name="arch" type='xml'>
+
+                      <form>
+                <sheet>
+                    <center>
+                        <h1 style="color : black">
+                            CUADRILLAS
+
+                        </h1>
+                    </center>
+                    <group>
+                        <group>
+                            <field name="name" widget="selection"/>
+                            <field name="importe"/>
+                        </group>
+                    </group>
+                </sheet>
+                <script>
+
+                    console.log('Hi World')
+                </script>
+            </form>
+
+        </field>
+    </record>
+
+    <record id="view_cp_cuadrillas_tree" model="ir.ui.view">
+
+        <field name="name">Cuadrillas View</field>
+        <field name="model">cuadrillas</field>
+        <field name="arch" type="xml">
+
+            <tree string="Cuadrillas Tree" multi_edit="1">
+
+                <field name="name" readonly="1" widget="selection"/>
+                <field name="importe" readonly="1" sum="Total"/>
+
+            </tree>
+        </field>
+    </record>
+
+</odoo>

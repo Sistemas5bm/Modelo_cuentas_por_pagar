@@ -1,0 +1,189 @@
+<odoo>
+
+    <template id="lotes_fleteros2">
+
+        <t t-call="web.html_container">
+
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="oe_structure"/>
+                      <div style="margin-bottom:20px;">ESTADO:
+                          <t t-if="estado_pago == 'no_pagado'"><h4>NO PAGADO</h4></t>
+                          <t t-if="estado_pago == 'pagado'"><h4>PAGADO</h4></t>
+                          <t t-if="estado_pago == 'sin_factura'"><h4>SIN FACTURAR</h4></t>
+                      </div>
+                        <div style="margin-bottom:20px;">De: <span style="margin-right:50px;" t-esc="date_start"/> A: <span style="margin-right:10px;" t-esc="date_end"/></div>
+
+                                     <div style="text-align:center;"><h4 style="margin-bottom:16px;">Reporte pagos fleteros</h4></div>
+
+
+                    <div class="row">
+                        <table class="table table_condensed">
+                            <t t-if="estado_pago == 'pagado' or estado_pago == 'no_pagado'">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:left;"><strong>ID_FLETE: </strong></th>
+
+                                    <th style="text-align:left;"><strong>FECHA: </strong></th>
+
+                                    <th style="text-align:left;"><strong>HUERTA: </strong></th>
+
+                                    <th style="text-align:left;"><strong>PRODUCTOR: </strong></th>
+
+                                    <th style="text-align:left;"><strong>MUNICIPIO: </strong></th>
+
+                                    <th style="text-align:left;"><strong>CAJAS CAMION: </strong></th>
+
+                                    <th style="text-align:left;"><strong>NOMBRE TRANSPORTISTA: </strong></th>
+
+                                    <th style="text-align:left;"><strong>UUID: </strong></th>
+
+                                    <th style="text-align:left;"><strong>PROVEDOR FACTURA: </strong></th>
+
+                                    <th style="text-align:left;"><strong>PESO Kg: </strong></th>
+
+                                    <th style="text-align:left;"><strong>TOTAL: </strong></th>
+
+                                </tr>
+                            </thead>
+                            </t>
+
+
+                            <t t-if="estado_pago == 'sin_factura'">
+
+                                <thead>
+                                <tr>
+                                    <th style="text-align:left;"><strong>ID_FLETE: </strong></th>
+
+                                    <th style="text-align:left;"><strong>FECHA: </strong></th>
+
+                                    <th style="text-align:left;"><strong>HUERTA: </strong></th>
+
+                                    <th style="text-align:left;"><strong>PRODUCTOR: </strong></th>
+
+                                    <th style="text-align:left;"><strong>MUNICIPIO: </strong></th>
+
+                                    <th style="text-align:left;"><strong>CAJAS CAMION: </strong></th>
+
+                                    <th style="text-align:left;"><strong>NOMBRE TRANSPORTISTA: </strong></th>
+
+                                    <th style="text-align:left;"><strong>BENEFICIARIO: </strong></th>
+
+                                    <th style="text-align:left;"><strong>PESO Kg: </strong></th>
+
+                                    <th style="text-align:left;"><strong>TOTAL: </strong></th>
+
+                                </tr>
+                            </thead>
+
+                            </t>
+                            <t t-set="acum" t-value="0"/>
+                            <t t-foreach="vals" t-as="o">
+
+                                <t t-if="estado_pago == 'pagado'">
+                            <tbody>
+                                <tr>
+                                <t t-if="o['estado_pago'] != 'not_paid'">
+                                <th t-esc="o['orden_corte']"/>
+                                <th t-esc="o['fecha_factura']"/>
+                                <th t-esc="o['huerta']"/>
+                                <th t-esc="o['productor']"/>
+                                <th t-esc="o['municipio_flete']"/>
+                                <th t-esc="o['cajas_mixtos_fletes']"/>
+                                <th t-esc="o['nombre_transportista']"/>
+                                <th t-esc="o['uuid']"/>
+                                <th t-esc="o['provedor_factura']"/>
+                                <th t-esc="'{0:,.2f}'.format(float(o['peso_producto']))"/>
+                                <th t-esc="'${0:,.2f}'.format(float(o['importe_final']))"/>
+                                    <t t-set="acum" t-value="acum + (float(o['importe_final']))"></t>
+                                </t>
+                                </tr>
+                            </tbody>
+                                </t>
+
+
+                                <t t-if="estado_pago == 'no_pagado'">
+                            <tbody>
+                                <t t-if="o['estado_pago'] == 'not_paid' or o['estado_pago'] == 'partial'">
+                                <th t-esc="o['orden_corte']"/>
+                                <th t-esc="o['fecha_factura']"/>
+                                <th t-esc="o['huerta']"/>
+                                <th t-esc="o['productor']"/>
+                                <th t-esc="o['municipio_flete']"/>
+                                <th t-esc="o['cajas_mixtos_fletes']"/>
+                                <th t-esc="o['nombre_transportista']"/>
+                                <t t-if="o['uuid'] == ' '">
+                                    <th></th>
+                                </t>
+                                <t t-else="o['uuid'] !='' ">
+                                <th t-esc="o['uuid']"/></t>
+                                <th t-esc="o['provedor_factura']"/>
+                                <th t-esc="'{0:,.2f}'.format(float(o['peso_producto']))"/>
+                                <th t-esc="'${0:,.2f}'.format(float(o['importe_final']))"/>
+                                    <t t-set="acum" t-value="acum + (float(o['importe_final']))"></t>
+                                </t>
+
+                            </tbody>
+                                </t>
+
+
+                                <t t-if="estado_pago == 'sin_factura'">
+                            <tbody>
+                                <t t-if="o['estado_pago'] != 'paid' and o['estado_pago']!='not_paid' and o['estado_pago']!='partial'">
+                                <th t-esc="o['orden_corte']"/>
+                                <th t-esc="o['fecha']"/>
+                                <th t-esc="o['huerta']"/>
+                                <th t-esc="o['productor']"/>
+                                <th t-esc="o['municipio_flete']"/>
+                                <th t-esc="o['cajas_mixtos_fletes']"/>
+                                <th t-esc="o['nombre_transportista']"/>
+
+                                <th t-esc="o['beneficiario']"/>
+                                <th t-esc="'{0:,.2f}'.format(float(o['peso_producto']))"/>
+                                <th t-esc="'${0:,.2f}'.format(float(o['importe_final']))"/>
+                                <t t-set="acum" t-value="acum + (float(o['importe_final']))"></t>
+                                </t>
+
+
+                            </tbody>
+                                </t>
+
+                            </t>
+                            <tr>
+                                <th></th>
+                                   <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th>
+                                            </th>
+                                   <th><div class="row justify-content-end" style="padding-top: 30px;" >
+                            <div >
+                                <table class="table table-sm" align="right">
+                                    <tbody>
+
+                                        <tr>
+                                            <td>TOTAL:</td>
+                                            <td>$<t t-esc="'{0:,.2f}'.format(float(acum))"/> </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div></th>
+                            </tr>
+
+                        </table>
+
+                    </div>
+                </div>
+                     </t>
+        </t>
+
+    </template>
+
+</odoo>

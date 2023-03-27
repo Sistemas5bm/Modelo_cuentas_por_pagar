@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+     <record id="organismo_verificador_normex" model="organismos_verificadores">
+
+        <field name="name">NORMEX</field>
+
+    </record>
+         <record id="organismo_verificador_siar" model="organismos_verificadores">
+
+        <field name="name">SIAR</field>
+
+    </record>
+         <record id="organismo_verificador_pamfa" model="organismos_verificadores">
+
+        <field name="name">PAMFA</field>
+
+    </record>
+
+</odoo>

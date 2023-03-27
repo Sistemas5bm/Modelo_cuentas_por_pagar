@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="action_open_cuentas_por_pagar_contratos2" model="ir.actions.act_window">
+        <field name="name">Contratos compra - venta</field>
+        <field name="res_model">contratos_compra_venta</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_open_cuentas_por_pagar_tipo_contrato" model="ir.actions.act_window">
+        <field name="name">Tipos de contrato</field>
+        <field name="res_model">tipo_contrato</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_open_cuentas_por_pagar_pais" model="ir.actions.act_window">
+        <field name="name">Pais</field>
+        <field name="res_model">pais</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_open_cuentas_por_pagar_estado" model="ir.actions.act_window">
+        <field name="name">Estado</field>
+        <field name="res_model">estado</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_open_cuentas_por_pagar_ciudad" model="ir.actions.act_window">
+        <field name="name">Ciudad</field>
+        <field name="res_model">ciudad</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_open_cuentas_por_pagar_localidad" model="ir.actions.act_window">
+        <field name="name">Localidad</field>
+        <field name="res_model">localidad</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_open_pagos_layout_fletes_facturas" model="ir.actions.act_window">
+        <field name="name">Layout flete</field>
+        <field name="res_model">pagos_layout_fletes</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_open_cuentas_por_pagar_huertas" model="ir.actions.act_window">
+        <field name="name">Huertas</field>
+        <field name="res_model">huertas</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_open_cuentas_por_pagar_lotes" model="ir.actions.act_window">
+        <field name="name">Lotes</field>
+        <field name="res_model">lotes</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_open_cuentas_por_pagar_cortes" model="ir.actions.act_window">
+        <field name="name">Cortes</field>
+        <field name="res_model">cortes</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <record id="action_open_cuentas_por_pagar_lote_account_move_line" model="ir.actions.act_window">
+        <field name="name">Lotes Linea - Facturas</field>
+        <field name="res_model">lotes_account_move_line</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_open_cuentas_por_pagar_layout_pago" model="ir.actions.act_window">
+        <field name="name">Layout Pago</field>
+        <field name="res_model">pagos_layout</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_open_cuentas_por_pagar_presupuesto_pago" model="ir.actions.act_window">
+        <field name="name">Presupuesto Pagos</field>
+        <field name="res_model">presupuesto_lotes</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_open_cuentas_por_pagar_presupuesto_pago_flete" model="ir.actions.act_window">
+        <field name="name">Presupuesto Pagos Flete</field>
+        <field name="res_model">presupuesto_flete</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_open_cuentas_por_pagar_reporte_saldos" model="ir.actions.act_window">
+        <field name="name">Reporte Saldos</field>
+        <field name="res_model">reporte_saldos</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_open_cuentas_por_pagar_autorizaciones_cancelaciones_view" model="ir.actions.act_window">
+        <field name="name">Autorizaciones Cancelaciones View</field>
+        <field name="res_model">autorizaciones_cancelaciones</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_open_cuentas_por_pagar_reps_view" model="ir.actions.act_window">
+        <field name="name">Recibos electronicos de pago View</field>
+        <field name="res_model">pagos_doctos_rel</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+    <record id="action_open_cuentas_por_pagar_fletes" model="ir.actions.act_window">
+        <field name="name">Tarifas - Municipios</field>
+        <field name="res_model">tarifas_fletes</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_open_cuentas_por_pagar_fletes_modelo_tts" model="ir.actions.act_window">
+        <field name="name">Municipios - fletes</field>
+        <field name="res_model">fletes_modelo_tts</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_open_fletes_descarga_wizard" model="ir.actions.act_window">
+        <field name="name">Descargas - fletes</field>
+        <field name="res_model">fletes_wizard</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_open_permisos_de_usuario_facturas" model="ir.actions.act_window">
+        <field name="name">Permisos - de - Usuarios</field>
+        <field name="res_model">permisos_usuarios</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_inicial_facturacion_facturas" name="Cuentas por pagar" parent="account.menu_finance"/>
+
+
+    <menuitem id="menu_vertical_cuentas_por_pagar_facturas" name="Tarifas" parent="menu_provedores"
+              action="action_open_cuentas_por_pagar_fletes"/>
+    <menuitem id="menu_facturacion_contactos" name="Contratos" parent="menu_provedores"
+              action="action_open_cuentas_por_pagar_contratos"/>
+    <menuitem id="menu_facturacion_tipo_de_contrators" name="Tipo de contratos" parent="menu_provedores"
+              action="action_open_cuentas_por_pagar_tipo_contrato"/>
+
+    <menuitem id="menu_provedores" name="Catalogo" parent="account.menu_finance"
+              sequence="2" action=""/>
+    <menuitem id="menu_facturas_pais" name="Pais" parent="menu_provedores"
+              action="action_open_cuentas_por_pagar_pais"/>
+    <menuitem id="menu_facturaas_estado" name="Estado"
+              parent="menu_provedores" action="action_open_cuentas_por_pagar_estado"/>
+    <menuitem id="menu_facturas_ciudad" name="Ciudad"
+              parent="menu_provedores" action="action_open_cuentas_por_pagar_ciudad"/>
+    <menuitem id="menu_facturas_ciudad" name="Localidad"
+              parent="menu_provedores" action="action_open_cuentas_por_pagar_localidad"/>
+    <menuitem id="menu_facturas-huertas" name="Huertas"
+              parent="menu_provedores" action="action_open_cuentas_por_pagar_huertas"/>
+
+    <menuitem id="menu_interfaz" name="Interfaz" sequence="3" parent="account.menu_finance"/>
+    <menuitem id="menu_facturas_lotes" name="Lotes"
+              parent="menu_interfaz" action="action_open_cuentas_por_pagar_lotes"/>
+    <menuitem id="menu_facturas_cortes" name="Cortes"
+              parent="menu_interfaz" action="action_open_cuentas_por_pagar_cortes"/>
+    <menuitem id="menu_facturas-fletes" name="Fletes"
+              parent="menu_interfaz" action="action_open_cuentas_por_pagar_fletes_modelo_tts"/>
+
+    <menuitem id="menu_descargas_datos" name="Descargas" sequence="4" parent="account.menu_finance"/>
+    <menuitem id="menu_facturas_descargas_lotes" name="Descarga de lotes"
+              parent="menu_descargas_datos" action="action_open_lotes_descarga_wizard"/>
+    <menuitem id="menu_facturas_descargas_cortes" name="Descarga de cortes"
+              parent="menu_descargas_datos" action="action_open_cortes_descarga_wizard"/>
+    <menuitem id="menu_facturas_descargas_cfdis" name="Descarga de cfdis"
+              parent="menu_descargas_datos" action="action_open_cfdis_descarga_wizard"/>
+    <menuitem id="menu_facturas_descarga_fletes" name="Descarga de Fletes"
+              parent="menu_descargas_datos" action="action_open_fletes_descarga_wizard"/>
+
+    <menuitem id="menu_programacion_de_pagos" name="Programacion de pagos"
+              parent="account.menu_finance" sequence="5"/>
+    <menuitem id="menu_facturas_lineas_facturas" name="Lotes Lineas Facturas"
+              parent="menu_programacion_de_pagos"
+              action="action_open_cuentas_por_pagar_lote_account_move_line"/>
+    <menuitem id="menu_facturas_layout_pago" name="Layout Pago"
+              parent="menu_programacion_de_pagos" action="action_open_cuentas_por_pagar_layout_pago"/>
+    <menuitem id="menu_facturas_layout_pago_flete" name="Layout flete"
+              parent="menu_programacion_de_pagos" action="action_open_pagos_layout_fletes" />
+
+    <menuitem id="menu_facturas_presupuesto_pago" name="Presupuesto Pago"
+              parent="menu_programacion_de_pagos" action="action_open_cuentas_por_pagar_presupuesto_pago"/>
+    <menuitem id="menu_facturas_presupuesto_pago_fletes" name="Presupuesto Pago Flete"
+              parent="menu_programacion_de_pagos"
+              action="action_open_cuentas_por_pagar_presupuesto_pago_flete"/>
+    <menuitem id="menu_facturas_reporte_fletes" name="Reporte Saldos"
+              parent="menu_programacion_de_pagos"
+              action="action_open_cuentas_por_pagar_reporte_saldos"/>
+    <menuitem id="menu_facturas_reps_views" name="REP'S View"
+              parent="menu_programacion_de_pagos"
+              action="action_open_cuentas_por_pagar_reps_view"/>
+    <menuitem id="menu_facturas_reportes-saldos" name="Reporting Saldos"
+              parent="menu_programacion_de_pagos" action="action_open_reporting_saldos_wizard"/>
+
+    <menuitem id="menu_autorizaciones" sequence="6" name="Autorizaciones"
+              parent="account.menu_finance"/>
+    <menuitem id="menu_facturas_autorizaciones" name="Autorizaciones"
+              parent="menu_autorizaciones"
+              action="action_open_cuentas_por_pagar_autorizaciones_cancelaciones_view"/>
+    <menuitem id="menu_verticar_autorizaciones_users_facturas" name="Permisos"
+              parent="menu_autorizaciones" action="action_open_permisos_de_usuario_facturas"/>
+
+</odoo>

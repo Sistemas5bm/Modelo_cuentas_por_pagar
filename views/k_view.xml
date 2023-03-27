@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+
+     <record id="tree_view_retencion_extra" model="ir.ui.view" >
+        <field name="name">tree.view.retencion.extra</field>
+        <field name="model">retenciones</field>
+        <field eval="100" name="priority"/>
+        <field name="arch" type="xml">
+                <tree string="Adicionales" editable="bottom" sample="1">
+                    <field name="name"/>
+                    <field name="importe" sum="Total"/>
+                </tree>
+        </field>
+     </record>
+</odoo>

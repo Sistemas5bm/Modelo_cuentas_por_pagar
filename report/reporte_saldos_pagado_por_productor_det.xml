@@ -1,0 +1,69 @@
+<odoo>
+    <template id="lotes_report_pagado_prod_det">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <div style="margin-bottom:20px;">De: <span style="margin-right:50px;" t-esc="date_start"/> A: <span style="margin-right:10px;" t-esc="date_end"/></div>
+
+                    <div style="text-align:center;">
+                        <h4 style="margin-bottom:16px;">Pagado</h4>
+                    </div>
+
+
+                    <div class="row">
+                        <table class="table table_condensed">
+                            <thead>
+                                <tr>
+
+                                    <th style="text-align:left;">
+                                        <strong>Nombre.:</strong>
+                                    </th>
+                                    <th style="text-align:left;">
+                                        <strong>Importe Pagado.:</strong>
+                                    </th>
+                                    <th style="text-align:left;">
+                                        <strong>Lote.:</strong>
+                                    </th>
+                                    <th style="text-align:left;">
+                                        <strong>Uuid.:</strong>
+                                    </th>
+                                    <th style="text-align:left;">
+                                        <strong>Sader.:</strong>
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="total" t-value="0.0"/>
+                                <tr t-foreach="vals" t-as="o">
+                                    <t t-set="total" t-value="total+o['importe_pagado']"/>
+                                    <td>
+                                        <span t-esc="o['name']"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="'${0:,.2f}'.format(float(o['importe_pagado']))"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="o['lote']"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="o['uuid']"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="o['sader']"/>
+                                    </td>
+
+                                </tr>
+                                <tr class="text_right">
+                                          <td class="text_right">TOTAL=<t t-esc="'${0:,.2f}'.format(float(total))"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_download_lotes_formad" model="ir.ui.view">
+        <field name="name">Vista formulario descarga de x2</field>
+        <field name="model">fletes_wizard</field>
+        <field name="arch" type="xml">
+            <form string="Descarga lotesx">
+                <sheet>
+                    <group>
+                        <field name="fecha_inicial"/>
+                        <field name="fecha_final"/>
+                        <field name="fletes_descarga" invisible="1"/>
+                    </group>
+                    <footer>
+                        <button name="create" string="Guardar" type="object" invisible="1"/>
+                        <button name="method_a" string="Descargar fletes" type="object" class="btn btn_primary"
+                                icon="fa-bolt" attrs="{'invisible': [('fletes_descarga', '=', False)]}"/>
+                        <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+        <record id="action_open_fletes_descarga_wizard" model="ir.actions.act_window">
+        <field name="name">Descarga de fletes</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">fletes_wizard</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="view_download_lotes_formad"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

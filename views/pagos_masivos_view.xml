@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+
+
+    <record id="view_pagos_masivos_tree" model="ir.ui.view">
+
+        <field name="name">PAGOS MASIVOS View</field>
+        <field name="model">pagos_masivos</field>
+        <field eval="100" name="priority"/>
+        <field name="arch" type="xml">
+
+            <tree string="PAGOS MASIVOS Tree" editable="bottom" sample="1">
+                <field name="serie" optional="show"/>
+                <field name="folio" optional="show"/>
+                <field name="uuid" optional="show"/>
+                <field name="partner_id" />
+                <field name="date_invoice" />
+                <field name="fecha_pago" />
+                <field name="name" context="{'tree_view_ref':'account.view_move_tree'}"/>
+                <field name="importe_adeudado" sum="sum_importe_adeudado"/>
+                <field name="importe_a_pagar" sum="sum_importe_a_pagar"/>
+                <field name="restante_real" sum="sum_restate_real"/>
+                <field name="payment_state" />
+
+
+
+
+            </tree>
+        </field>
+    </record>
+</odoo>

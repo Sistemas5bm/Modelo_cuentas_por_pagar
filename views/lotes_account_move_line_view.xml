@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+
+    <record id="view_lotes_account_line" model="ir.ui.view">
+        <field name="name">Lotes Facturas Linea</field>
+        <field name="model">lotes_account_move_line</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="lotes_fecha_recepcion"/>
+                            <field name="lotes_nombre_productor"/>
+                            <field name="lotes_jefe_acopio"/>
+                            <field name="abono_kilogramos"/>
+                            <field name="abono_importe"/>
+                            <field name="lotes_saldo_pendiente"/>
+                            <field name="lotes_kilogramos"/>
+                            <field name="lotes_importe"/>
+                            <field name="lotes_sader"/>
+                            <field name="lotes_precio_unitario"/>
+                            <field name="lotes_observaciones"/>
+                            <field name="lotes_sader_code"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="lotes_factura_linea_tree" model="ir.ui.view">
+        <field name="name">Tree Lotes Factura Linea View</field>
+        <field name="model">lotes_account_move_line</field>
+        <field eval="100" name="priority"/>
+        <field name="arch" type="xml">
+            <tree string="Lotes Factura Tree" editable="bottom" sample="1"
+                  default_order='id_partner,uuid asc,lotes_fecha_recepcion asc'  >
+                <header>
+                    <button name="contabilizar_lote" type="object" string="Contabilizar Lote"
+                            class="oe_highlight" invisible="0"/>
+                    <button name="contabilizar_cfdi" type="object" string="Contabilizar Cfdi"
+                            class="oe_highlight" invisible="0"/>
+                    <button name="convertir_a_borrador" type="object" string="Borrador"
+                            class="oe_highlight" invisible="0"/>
+                    <button name="action_register_payment" type="object" string="Registrar Pago"
+                            groups="account.group_account_user" invisible="0"/>
+                    <button name="put_check_freeze" type="object" string="Congelar"
+                            class="oe_highlight" attrs="{'invisible':[('state_special','=','check_freeze')]}"/>
+                    <button name="put_check_freeze_invert" type="object" string="Reestablecer" attrs="{'invisible':[('state_special','=','check_freeze_invert')]}"/>
+                </header>
+                <field name="name"/>
+                <field name="lotes_fecha_recepcion" optional="show"/>
+                <field name="lotes_nombre_productor" optional="show"  />
+                <field name="abono_kilogramos" sum="Abono Kg" optional="show"/>
+                <field name="abono_importe" sum="Suma Abono" optional="show"/>
+                <field name="abono_importe_con_impuesto" optional="hide" sum="Abono Importe - Ret"/>
+                <field name="abono_importe_con_impuesto_db"/>
+                <field name="lotes_kilogramos_pendiente" optional="hide"/>
+                <field name="lotes_saldo_pendiente" sum="Suma Saldo Pendiente" optional="hide"/>
+                <field name="lotes_kilogramos" sum="Lotes Kg" optional="hide"/>
+                <field name="lotes_importe" sum="Lotes Importe" optional="hide"/>
+                <field name="lotes_sader" optional="show"/>
+                <field name="lotes_sader_code" optional="show"/>
+                <field name="lotes_precio_unitario" optional="show"/>
+                <field name="lotes_jefe_acopio" optional="hide"/>
+                <field name="folio" optional="show"/>
+                <field name="serie" optional="show"/>
+                <field name="uuid" optional="show"/>
+                <field name="id_partner" optional="show"/>
+                <field name="fecha_factura" optional="show"/>
+                <field name="fecha_pago" optional="show"/>
+                <field name="impuesto" optional="show"/>
+                <field name="metodo_pago" optional="show"/>
+
+                <field name="forma_de_pago" optional="show"/>
+                <field name="estado_pago" widget="badge" optional="hide"/>
+                <field name="estado_factura" optional="hide" decoration-success="estado_factura == 'paid'"
+                       decoration-danger="estado_factura == 'not_paid'" widget="badge"/>
+                <field name="lotes_observaciones" optional="hide"/>
+                <field name="estado_contabilizacion" statusbar_visible="borrador,Contabilizado Lote,Contabilizado Cfdi"
+                       optional="hide"
+                       decoration-warning="estado_contabilizacion == 'Contabilizado Lote'"
+                       decoration-success="estado_contabilizacion == 'Contabilizado Cfdi'"
+                       decoration-muted="estado_contabilizacion == 'Borrador'"
+                       widget="badge"/>
+                <field name="lotes_sader_contrato" optional="hide"/>
+                <field name="es_tarjeta_apeam" widget="boolean_toggle" readonly="False" optional="show"/>
+                <field name="contrato_bym_resparnet" optional="show"  decoration-success="contrato_bym_resparnet == 'VIGENTE' or contrato_bym_resparnet =='NO APLICA'"
+                       decoration-danger="contrato_bym_resparnet == ('VENCIDO') or contrato_bym_resparnet== ('NO DOCTO') "  widget="badge"/>
+                <field name="estatus_contratos" widget="badge" decoration-success="estatus_contratos == 'VIGENTE' or estatus_contratos=='NO APLICA'"
+                       decoration-danger="estatus_contratos == 'VENCIDO' or estatus_contratos == 'NO DOCTO'" optional="show"/>
+                <field name="es_opinion" optional="hide" widget="badge" decoration-danger="es_opinion == 'VENCIDO' or es_opinion =='NO DOCTO'"
+                       decoration-success="es_opinion == 'VIGENTE' or es_opinion=='NO APLICA' "/>
+                <!--<field name="es_ine" optional="show" widget="boolean_toggle" readonly="False"/>-->
+                <field name="ine_venc" widget="badge" optional="show" decoration-success="ine_venc == 'VIGENTE' or ine_venc=='NO APLICA' "
+                       decoration-danger="ine_venc == 'VENCIDO' or ine_venc == 'NO DOCTO' "/>
+                <field name="es_cif" optional="show" widget="badge" decoration-danger="es_cif == 'VENCIDO' or es_cif=='NO DOCTO'"
+                       decoration-success="es_cif == 'VIGENTE' or es_cif == 'NO APLICA' "/>
+                <field name="fecha_pago_tuple" optional="hide"/>
+                <field name="state_special" widget="badge" decoration-success="state_special == 'check_freeze'" decoration-danger="state_special == 'check_freeze_invert'"/>
+                <field name="chack_cuenta_decault_lotes" optional="show" widget="boolean_toggle"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_lotes_search_lotes_account_move_line" model="ir.ui.view">
+        <field name="name">lotes.search.lotes_account_move_line</field>
+        <field name="model">lotes_account_move_line</field>
+        <field name="arch" type="xml">
+            <search string="Busqueda lotes">
+                <field name="name" string="Cadenas Texto"
+                       filter_domain="['|','|','|',('name', 'ilike', self),('lotes_nombre_productor', 'ilike', self),('lotes_sader', 'ilike', self),
+                       ('id_partner', 'ilike', self)]"/>
+            </search>
+        </field>
+    </record>
+</odoo>

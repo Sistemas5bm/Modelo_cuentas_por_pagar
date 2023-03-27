@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="action_report_lotes" model="ir.actions.report">
+
+        <field name="name">Reporte Selección</field>
+        <field name="model">lotes</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">cuentas_por_pagar.report_lotes</field>
+        <field name="report_file">cuentas_por_pagar.report_lotes</field>
+        <field name="print_report_name">('Reporte Seleccion - %s' %(object.name))</field>
+        <field name="binding_model_id" ref="model_lotes"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_lotes">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <t t-set="recepcion" t-value="0"/>
+                            <t t-set="orden_corte" t-value="0"/>
+                            <t t-set="tipo_corte" t-value=""/>
+                            <tr t-foreach="o.reporte_seleccion" t-as="l">
+                                    <t t-set="recepcion" t-value="l.lote_recepcion"/>
+                                <t t-set="orden_corte" t-value="l.orden_corte_lote"/>
+                                <t t-set="tipo_corte" t-value="l.tipo_corte"/>
+
+                                </tr>
+                        <!--<center>
+                            <t t-if="o.reporte_seleccion == False">
+                                <div class="alert alert-danger" role="alert">
+                                    No se ha sincronizado con el reporte de selección, favor de sincronizar.
+                                </div>
+
+                            </t>
+                            <t t-else="">
+                                <div class="alert alert-primary" role="alert">
+                                    Reporte de selección creado.
+                                </div>
+                            </t>
+                            <div>
+
+                            </div>
+                        </center>-->
+
+                        <div class="row">
+                            <div class="col-3">
+                                <h2>Lote:
+                                    <span t-field="o.name"/>
+                                </h2>
+                                <ul class="list-inline" style="font-size:15px;">
+                                    <li t-if="o.id_partner">Productor:
+                                        <span t-field="o.id_partner"/>
+                                    </li>
+                                    <li t-if="o.sader">Huerta:
+                                        <span t-field="o.sader"/>
+                                    </li>
+                                    <li t-if="o.sader_code">Sader:
+                                        <span t-field="o.sader_code"/>
+                                    </li>
+                                    <li>Tipo de corte:
+                                    </li>
+                                    <li>
+                                        <span t-esc="tipo_corte"/>
+                                    </li>
+
+                                </ul>
+
+                            </div>
+                            <div class="col-9">
+
+                                <ul class="list-inline" style="font-size:15px;">
+                                    <li t-if="o.fecha">Fecha:
+                                        <span t-field="o.fecha"/>
+                                    </li>
+                                    <li t-if="o.tipo_movimiento">Tipo movimiento:
+                                        <span t-field="o.tipo_movimiento"/>
+                                    </li>
+                                    <li t-if="o.precio_u">Precio U:
+                                        <span t-field="o.precio_u"/>
+                                    </li>
+
+                                    <li t-if="o.importe">Importe:
+                                        <span t-field="o.importe"/>
+                                    </li>
+                                    <li t-if="o.cantidad">Cantidad:
+                                        <span t-field="o.cantidad"/>
+                                    </li>
+                                    <li t-if="o.poblacion">Poblacion:
+                                        <span t-field="o.poblacion"/>
+                                    </li>
+                                    <li t-if="o.jefe_acopio">Jefe Acopio:
+                                        <span t-field="o.jefe_acopio"/>
+                                    </li>
+                                    <li t-if="o.tickets">Tickets:
+                                        <span t-field="o.tickets"/>
+                                    </li>
+
+                                </ul>
+
+                            </div>
+                        </div>
+                        <table class="table table-sm" style="margin-top:30px;">
+
+                            <thead>
+                                <th><b>Relacion de Ordenes de corte</b></th>
+                                <th></th>
+                                <th></th>
+                            </thead>
+                            <thead>
+                                <th>No.de Recepcion</th>
+                                <th>Ticket</th>
+                                <th>Fecha</th>
+                                <th>Orden de Corte</th>
+                                <th>Kilogramos</th>
+                            </thead>
+                            <tbody>
+                                <td>
+                                    <t t-esc="recepcion"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.tickets"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.fecha_empacado"/>
+                                </td>
+                                <td>
+                                    <span t-esc="orden_corte"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.cantidad"/>
+                                </td>
+                            </tbody>
+                            <tbody>
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                    Total:
+                                </td>
+                                <td>
+                                    <span t-field="o.cantidad"/>
+                                </td>
+                            </tbody>
+                        </table>
+
+                        <table class="table table-sm" style="margin-top:30px;">
+                            <thead>
+                                <th>Producto</th>
+                                <th>Kilogramos</th>
+                                <th>Porcentaje</th>
+                            </thead>
+                            <tbody>
+                                <t t-set="total" t-value="0"/>
+                                <t t-set="acum" t-value="0"/>
+                                <tr t-foreach="o.reporte_seleccion" t-as="l">
+                                    <td>
+                                        <span t-field="l.producto"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.kilogramos"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="l.porcentaje_produc"/>%
+                                    </td>
+
+                                    <t t-set="total" t-value="total+l.kilogramos"/>
+                                    <t t-set="acum" t-value="l.peso_neto"/>
+
+                                </tr>
+                                <h2>Total Kg=
+                                    <t t-esc="'${0:,.2f}'.format(float(total))"/>
+                                </h2>
+                            </tbody>
+                            <tbody>
+                                 <td>
+                                     TOTAL:
+                                    </td>
+                                    <td>
+                                        <t t-esc="'{0:,.2f}'.format(float(acum))"/>
+                                    </td>
+                                    <td>
+                                        100.00%
+                                    </td>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_estado" model="ir.ui.view">
+        <field name="name">Vista Estado</field>
+        <field name="model">estado</field>
+        <field name="arch" type='xml'>
+
+                      <form>
+                <sheet>
+                    <center>
+                        <h1 style="color : black">
+                            ESTADO
+
+                        </h1>
+                    </center>
+<widget name="web_ribbon" title="Archivado" bg_color="bg-danger" attrs="{'invisible': [('active','=',True)]}"/>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="pais"/>
+                        </group>
+                        <group>
+                            <field name="active" widget="boolean_toggle"/>
+
+                        </group>
+                    </group>
+                </sheet>
+                <script>
+
+                    console.log('Hi World')
+                </script>
+            </form>
+
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="action_open_cuentas_por_pagar_contratos" model="ir.actions.act_window">
+        <field name="name">Contratos compra - venta</field>
+        <field name="res_model">contratos_compra_venta</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_open_cuentas_por_pagar_tipo_contrato" model="ir.actions.act_window">
+        <field name="name">Tipos de contrato</field>
+        <field name="res_model">tipo_contrato</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_open_cuentas_por_pagar_pais" model="ir.actions.act_window">
+        <field name="name">Pais</field>
+        <field name="res_model">pais</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_open_cuentas_por_pagar_estado" model="ir.actions.act_window">
+        <field name="name">Estado</field>
+        <field name="res_model">estado</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_open_cuentas_por_pagar_ciudad" model="ir.actions.act_window">
+        <field name="name">Ciudad</field>
+        <field name="res_model">ciudad</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_open_cuentas_por_pagar_localidad" model="ir.actions.act_window">
+        <field name="name">Localidad</field>
+        <field name="res_model">localidad</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_open_cuentas_por_pagar_huertas" model="ir.actions.act_window">
+        <field name="name">Huertas</field>
+        <field name="res_model">huertas</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_open_cuentas_por_pagar_lotes" model="ir.actions.act_window">
+        <field name="name">Lotes</field>
+        <field name="res_model">lotes</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_open_cuentas_por_pagar_cortes" model="ir.actions.act_window">
+        <field name="name">Cortes</field>
+        <field name="res_model">cortes</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <record id="action_open_cuentas_por_pagar_lote_account_move_line" model="ir.actions.act_window">
+        <field name="name">Lotes Linea - Facturas</field>
+        <field name="res_model">lotes_account_move_line</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_open_cuentas_por_pagar_layout_pago" model="ir.actions.act_window">
+        <field name="name">Layout Pago</field>
+        <field name="res_model">pagos_layout</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_open_pagos_layout_fletes" model="ir.actions.act_window">
+        <field name="name">Layout flete</field>
+        <field name="res_model">pagos_layout_fletes</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_open_cuentas_por_pagar_presupuesto_pago" model="ir.actions.act_window">
+        <field name="name">Presupuesto Pagos</field>
+        <field name="res_model">presupuesto_lotes</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_open_cuentas_por_pagar_presupuesto_pago_flete" model="ir.actions.act_window">
+        <field name="name">Presupuesto Pagos Flete</field>
+        <field name="res_model">presupuesto_flete</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_open_cuentas_por_pagar_reporte_saldos" model="ir.actions.act_window">
+        <field name="name">Reporte Saldos</field>
+        <field name="res_model">reporte_saldos</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_open_cuentas_por_pagar_autorizaciones_cancelaciones_view" model="ir.actions.act_window">
+        <field name="name">Autorizaciones Cancelaciones View</field>
+        <field name="res_model">autorizaciones_cancelaciones</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_open_cuentas_por_pagar_reps_view" model="ir.actions.act_window">
+        <field name="name">Recibos electronicos de pago View</field>
+        <field name="res_model">pagos_doctos_rel</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+    <record id="action_open_cuentas_por_pagar_fletes" model="ir.actions.act_window">
+        <field name="name">Tarifas - Municipios</field>
+        <field name="res_model">tarifas_fletes</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_open_cuentas_por_pagar_fletes_modelo_tts" model="ir.actions.act_window">
+        <field name="name">Municipios - fletes</field>
+        <field name="res_model">fletes_modelo_tts</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_open_fletes_descarga_wizard" model="ir.actions.act_window">
+        <field name="name">Descargas - fletes</field>
+        <field name="res_model">fletes_wizard</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_open_permisos_de_usuario" model="ir.actions.act_window">
+        <field name="name">Permisos - de - Usuarios</field>
+        <field name="res_model">permisos_usuarios</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+
+    <!-- menus horizontales -->
+    <menuitem id="menu_principal_cuentas_por_pagar" name="Cuentas por pagar"
+              web_icon="cuentas_por_pagar,static/description/icon.png"/>
+    <menuitem id="menu_horizontal_cuentas_por_pagar" name="Opciones" parent="menu_principal_cuentas_por_pagar"/>
+    <menuitem id="menu_vertical_cuentas_por_pagar" name="Tarifas" parent="menu_horizontal_cuentas_por_pagar"
+              action="action_open_cuentas_por_pagar_fletes"/>
+    <menuitem id="menu_horizontal_cuentas_por_pagar_catalogo" name="Catalogos"
+              parent="menu_principal_cuentas_por_pagar"/>
+    <menuitem id="menu_horizontal_cuentas_por_pagar_interfaz" name="Interfaz"
+              parent="menu_principal_cuentas_por_pagar"/>
+    <menuitem id="menu_horizontal_cuentas_por_pagar_descarga" name="Descarga de datos"
+              parent="menu_principal_cuentas_por_pagar"/>
+    <menuitem id="menu_horizontal_programacion_pagos" name="Programación de pagos"
+              parent="menu_principal_cuentas_por_pagar"/>
+    <menuitem id="menu_horizontal_autorizaciones" name="Autorizaciones"
+              parent="menu_principal_cuentas_por_pagar"/>
+    <menuitem id="menu_verticar_autorizaciones_users" name="Permisos"
+              parent="menu_horizontal_autorizaciones" action="action_open_permisos_de_usuario"/>
+    <!-- menus verticales -->
+    <menuitem id="menu_vertical_cuentas_por_pagar_contratos" name="Contratos" parent="menu_horizontal_cuentas_por_pagar"
+              action="action_open_cuentas_por_pagar_contratos"/>
+    <menuitem id="menu_vertical_cuentas_por_pagar_tipo_contrato" name="Tipos De Contratos"
+              parent="menu_horizontal_cuentas_por_pagar" action="action_open_cuentas_por_pagar_tipo_contrato"/>
+    <menuitem id="menu_vertical_cuentas_por_pagar_pais" name="Pais" parent="menu_horizontal_cuentas_por_pagar_catalogo"
+              action="action_open_cuentas_por_pagar_pais"/>
+    <menuitem id="menu_vertical_cuentas_por_pagar_estado" name="Estado"
+              parent="menu_horizontal_cuentas_por_pagar_catalogo" action="action_open_cuentas_por_pagar_estado"/>
+    <menuitem id="menu_vertical_cuentas_por_pagar_ciudad" name="Ciudad"
+              parent="menu_horizontal_cuentas_por_pagar_catalogo" action="action_open_cuentas_por_pagar_ciudad"/>
+    <menuitem id="menu_vertical_cuentas_por_pagar_localidad" name="Localidad"
+              parent="menu_horizontal_cuentas_por_pagar_catalogo" action="action_open_cuentas_por_pagar_localidad"/>
+    <menuitem id="menu_vertical_cuentas_por_pagar_huertas" name="Huertas"
+              parent="menu_horizontal_cuentas_por_pagar_catalogo" action="action_open_cuentas_por_pagar_huertas"/>
+    <menuitem id="menu_vertical_cuentas_por_pagar_lotes" name="Lotes"
+              parent="menu_horizontal_cuentas_por_pagar_interfaz" action="action_open_cuentas_por_pagar_lotes"/>
+
+    <menuitem id="menu_vertical_cuentas_por_pagar_cortes" name="Cortes"
+              parent="menu_horizontal_cuentas_por_pagar_interfaz" action="action_open_cuentas_por_pagar_cortes"/>
+    <menuitem id="menu_vertical_cuentas_por_pagar_fletes" name="Fletes"
+              parent="menu_horizontal_cuentas_por_pagar_interfaz" action="action_open_cuentas_por_pagar_fletes_modelo_tts"/>
+
+    <menuitem id="menu_vertical_cuentas_por_pagar_lotes_account_move_line" name="Lotes Lineas Facturas"
+              parent="menu_horizontal_programacion_pagos"
+              action="action_open_cuentas_por_pagar_lote_account_move_line"/>
+    <menuitem id="menu_vertical_cuentas_por_pagar_lotes_descarga" name="Descarga de lotes"
+              parent="menu_horizontal_cuentas_por_pagar_descarga" action="action_open_lotes_descarga_wizard"/>
+    <menuitem id="menu_vertical_cuentas_por_pagar_cortes_descarga" name="Descarga de cortes"
+              parent="menu_horizontal_cuentas_por_pagar_descarga" action="action_open_cortes_descarga_wizard"/>
+    <menuitem id="menu_vertical_cuentas_por_pagar_cfdis_descarga" name="Descarga de cfdis"
+              parent="menu_horizontal_cuentas_por_pagar_descarga" action="action_open_cfdis_descarga_wizard"/>
+    <menuitem id="menu_vertical_cuentas_por_pagar_fletes_descarga" name="Descarga de fletes"
+              parent="menu_horizontal_cuentas_por_pagar_descarga" action="action_open_fletes_descarga_wizard"/>
+
+    <menuitem id="menu_vertical_cuentas_por_pagar_layout_pago" name="Layout Pago"
+              parent="menu_horizontal_programacion_pagos" action="action_open_cuentas_por_pagar_layout_pago"/>
+
+    <menuitem id="menu_vertical_cuentas_por_pagar_layout_flete_pago" name="Layout flete"
+              parent="menu_horizontal_programacion_pagos" action="action_open_pagos_layout_fletes" />
+
+    <menuitem id="menu_vertical_presupuestos_lotes" name="Presupuesto Pago"
+              parent="menu_horizontal_programacion_pagos" action="action_open_cuentas_por_pagar_presupuesto_pago"/>
+    <menuitem id="menu_vertical_presupuestos_flete2" name="Presupuesto Pago Flete"
+              parent="menu_horizontal_programacion_pagos"
+              action="action_open_cuentas_por_pagar_presupuesto_pago_flete"/>
+    <menuitem id="menu_vertical_presupuestos_flete" name="Reporte Saldos"
+              parent="menu_horizontal_programacion_pagos"
+              action="action_open_cuentas_por_pagar_reporte_saldos"/>
+    <menuitem id="menu_vertical_reps_view" name="REP'S View"
+              parent="menu_horizontal_programacion_pagos"
+              action="action_open_cuentas_por_pagar_reps_view"/>
+    <menuitem id="menu_vertical_cuentas_por_pagar_reporting_saldos" name="Reporting Saldos"
+              parent="menu_horizontal_programacion_pagos" action="action_open_reporting_saldos_wizard"/>
+    <menuitem id="menu_vertical_cuentas_por_pagar_autorizaciones" name="Autorizaciones"
+              parent="menu_horizontal_autorizaciones"
+              action="action_open_cuentas_por_pagar_autorizaciones_cancelaciones_view"/>
+
+</odoo>

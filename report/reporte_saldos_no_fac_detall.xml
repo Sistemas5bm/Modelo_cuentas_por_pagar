@@ -1,0 +1,96 @@
+<odoo>
+    <template id="lotes_report_no_fac_datall">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <div style="margin-bottom:20px;">De: <span style="margin-right:50px;" t-esc="date_start"/> A: <span style="margin-right:10px;" t-esc="date_end"/></div>
+
+                    <div style="text-align:center;">
+                        <h4 style="margin-bottom:16px;">No Facturado Detalle</h4>
+                    </div>
+
+
+                    <div class="row">
+                        <table class="table table_condensed">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:left;">
+                                        <strong>Lote.:</strong>
+                                    </th>
+                                    <th style="text-align:left;">
+                                        <strong>Proveedor:</strong>
+                                    </th>
+                                    <th style="text-align:left;">
+                                        <strong>Sader.:</strong>
+                                    </th>
+                                    <th style="text-align:left;">
+                                        <strong>Fecha:</strong>
+                                    </th>
+                                    <th style="text-align:left;">
+                                        <strong>Importe:</strong>
+                                    </th>
+                                    <th style="text-align:left;">
+                                        <strong>Precio U:</strong>
+                                    </th>
+                                    <th style="text-align:left;">
+                                        <strong>Cantidad:</strong>
+                                    </th>
+                                    <th style="text-align:left;">
+                                        <strong>Tipo Corte:</strong>
+                                    </th>
+                                    <th style="text-align:left;">
+                                        <strong>Huerta:</strong>
+                                    </th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="total" t-value="0.0"/>
+                                <tr t-foreach="vals" t-as="o">
+                                    <t t-set="total" t-value="total+o['importe']"/>
+                                    <td>
+                                        <span t-esc="o['lote']"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="o['proveedor']"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="o['sader']"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="o['fecha']"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="'${0:,.2f}'.format(float(o['importe']))"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="o['precio_u']"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="o['cantidad']"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="o['tipo_corte']"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="o['huerta']"/>
+                                    </td>
+
+                                </tr>
+                                <tr class="text_right">
+                                    <td class="text_right">TOTAL=
+                                        <t t-esc="'${0:,.2f}'.format(float(total))"/>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

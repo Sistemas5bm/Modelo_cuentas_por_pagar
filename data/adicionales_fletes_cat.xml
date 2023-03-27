@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+                <record id="id_cajas_extra" model="cat_descuentos">
+
+            <field name="name">CAJAS EXTRA</field>
+
+        </record>
+
+    </data>
+
+</odoo>
